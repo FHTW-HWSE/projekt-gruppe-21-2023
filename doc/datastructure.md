@@ -2,7 +2,7 @@
 
 ## Structs
 
-´´´plantuml
+```plantuml
 
 struct table{
  int x;
@@ -25,7 +25,7 @@ struct booking{
  date endTime;
 }
 
-´´´
+```
 
 ## CSVs
 
