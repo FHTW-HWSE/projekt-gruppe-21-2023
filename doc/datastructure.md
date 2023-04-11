@@ -4,21 +4,21 @@
 
 ```plantuml
 
-struct table{
+struct table {
  int x;
  int y;
  int id;
 }
 
 
-struct person{
+struct person {
  char name [50];
  char telefonnumber [32];
  int id;
 }
 
 
-struct booking{
+struct booking {
  struct person;
  struct table;
  date startTime;
