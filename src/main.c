@@ -1,11 +1,29 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+/*
+ #ifndef FILENAME_H // Include guard
+ #define FILENAME_H
+ // Includes for headers required within this file
+ #include <stdint.h>
+ // Type definitions
+ typedef uint8_t u8;
+ // Shared macro literals
+ #define MAX_QUEUE 64
+// Shared function-like macros
+ #define ARRAY_SIZE(x) ((sizeof(x)) / (sizeof((x)[0])))
+ // Prototypes of shared functions
+ unsigned int some_function(u8 a, u8 b);
+// "Exports" of global variables
+extern int global_variable;
+#endif
+
+*/
 
 
-#define nameLength 50;
-#define timeLength 17;
-#define telNumLen  25;
+//TODO Header ins Include File brinngen und aufräumen
+
+
+#include "main.h"
+#include "parser.h"
+#include "filehandeling.h"
 /*
 Tisch
     x
@@ -40,24 +58,6 @@ Database.csv
  *  
  *  
  */  
-struct person {
-    char name [nameLength];   //
-    char number [telNumLen];
-    int id;
-};
-
-struct table {
-    int x;
-    int y;
-    int id;
-};
-
-struct booking {
-    struct person *personBooking;
-    struct table *tableBooking;
-    char startTime[timeLength];
-    char endTime[timeLength];
-};
 
 
 int main (int argc, char ** argv){
