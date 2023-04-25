@@ -59,12 +59,12 @@ In den folgenden Ordner befinden sich folgende  Datein:
 - projectGuidlines.c
 
 /test
--bookingTest.c
--contactTest.c
--restaurantTest.c
--filehandelingTest.c
+- bookingTest.c
+- contactTest.c
+- restaurantTest.c
+- filehandelingTest.c
 
 /database
--booking.csv
--restaurant.csv
--contact.csv
+- booking.csv
+- restaurant.csv
+- contact.csv
