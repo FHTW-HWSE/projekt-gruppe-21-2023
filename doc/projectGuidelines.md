@@ -1,6 +1,6 @@
-#Project Guidelines
+# Project Guidelines
 
-##Benennung der Variablen
+## Benennung der Variablen
 
 Die Variablen sind in der englischen Sprache geschrieben. Desweiteren sollten die Variablen keine Sonderzeichen und Zahlen erhalten.Falls die Variable aus zwei Wörter bestehen, wird der CamelCase-Schreibweise verwendet.Variablen-Namen beginnen mit einem Kleinbuchstaben.
 
@@ -26,6 +26,11 @@ Es gelten folgende Regeln bei Bennenung von Unit-Test:
 - Muss anhand der Name klar sein, was die Funktion tun soll
 - Basiert auf das Given-When-Then Prinzip
 
+## Dokumentation vom Code
+
+- Ist auf Englisch,
+- Basiert auf die Doxygen-Dokumentation
+
 ## Ordner Struktur
 
 In den folgenden Ordner befinden sich folgende  Datein:
@@ -35,4 +40,31 @@ In den folgenden Ordner befinden sich folgende  Datein:
 | dummy | Dieser Ordner dient zur Überprüfung ob das Hochladne bei GitHub funktionier | 
 | doc | Dort werden Dokumentation bzw. Überlegungen in Form eines Markdown-Files angezeigt |
 | src | dort wird der ganze Code gespeichert |
-| test | dort werden die ganzen Unit-Test gespeichert|
+| test | dort werden die ganzen Unit-Test gespeichert |
+|database| dort befinnden sich die CSV-Datei |
+
+ 
+## Datei-Guideline:
+
+/src
+- booking.c
+- contact.c
+- filehandeling.c
+- main.c
+- parser.c
+- restaurant.c
+
+/doc
+- datastructure.c
+- projectGuidlines.c
+
+/test
+-bookingTest.c
+-contactTest.c
+-restaurantTest.c
+-filehandelingTest.c
+
+/database
+-booking.csv
+-restaurant.csv
+-contact.csv
