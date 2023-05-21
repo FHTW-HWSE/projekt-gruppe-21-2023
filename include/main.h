@@ -14,6 +14,7 @@ struct person {
     char name [nameLength];   
     char number [telNumLen];
     int id;
+    person *next;
 };
 
 
@@ -21,13 +22,15 @@ struct table {
     int x;
     int y;
     int id;
+    table *next;
 };
 
 struct booking {
-    struct person *personBooking;
-    struct table *tableBooking;
+    int idPerson;
+    int idTable;
     char startTime[timeLength];
     char endTime[timeLength];
+    booking *next;
 };
 
 #endif

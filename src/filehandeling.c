@@ -41,7 +41,6 @@ int getRows(char *filename)
     @param filename aus dem gelesen wird
     @param test Sting auf dessen Specherplatz dann der eingelesene String gespeichert wird
     @return ein int in dem die Länge des eingelesenen Strings steht
-
 */
 
 int readFile(char *filename, char *text) 
@@ -67,3 +66,44 @@ int readFile(char *filename, char *text)
     return i;
 }
 
+
+/*! fn write File
+    @brief schreibt die Daten von einem übergebenen String in das angegebene File
+    @param filename in das geschrieben 
+    @param Sting der in das File geschrieben wird
+    @return 0 für Erfolgreich
+*/
+
+int writeFile(char *filename, char *inputString){
+    FILE *file;
+
+    file = fopen(filename, 'a');
+
+    if( file == NULL){
+        return -1;
+    }
+
+    fprintf("%s", inputString);
+
+    fclose(file);
+    return 0;
+}
+
+
+/*int changeEntry(char *filename, char inputString, int line){
+    FILE *file;
+    char currentChar = 'i'; //damit  nicht zufällig der uninitialisierte Wert uns rein spuckt
+
+
+    file = fopen(filename, "r+");
+
+    for(int i = 0; i < line; i++){
+        while(currentChar != '\n') {
+            currentChar = fgetc(file);
+
+
+            
+        }
+    }
+
+}*/
