@@ -16,12 +16,12 @@ struct Restaurant {
     int numTables;
 };
 
-// Display the size of the restaurant
+// displays size of restaurant
 void displayRestaurantSize(struct Restaurant restaurant) {
     printf("Restaurant Size: Length=%.2f, Width=%.2f\n", restaurant.length, restaurant.width);
 }
 
-// Display the tables in the restaurant
+// display tables in restaurant
 void displayTables(struct Restaurant restaurant) {
     printf("--- Tables ---\n");
     for (int i = 0; i < restaurant.numTables; i++) {
@@ -30,7 +30,7 @@ void displayTables(struct Restaurant restaurant) {
     printf("-------------\n");
 }
 
-// Add a table to the restaurant
+// add table to restaurant
 int addTable(struct Restaurant *restaurant, float length, float width) {
     if (restaurant->numTables >= MAX_TABLES) {
         printf("Error: Maximum number of tables reached.\n");
@@ -48,7 +48,7 @@ int addTable(struct Restaurant *restaurant, float length, float width) {
     return 1;
 }
 
-// Remove a table from the restaurant
+// remove table from restaurant
 int removeTable(struct Restaurant *restaurant, int tableNumber) {
     for (int i = 0; i < restaurant->numTables; i++) {
         if (restaurant->tables[i].tableNumber == tableNumber) {
@@ -71,17 +71,17 @@ int main() {
     int choice, tableNumber;
     float tableLength, tableWidth;
 
-    // Prompt the user to enter the initial size of the restaurant
+    // prompt user to enter the initial size of restaurant
     printf("Please enter the initial size of the restaurant:\n");
     printf("Length: ");
     scanf("%f", &restaurant.length);
     printf("Width: ");
     scanf("%f", &restaurant.width);
 
-    // Display the initial size of the restaurant
+    // display initial size of restaurant
     displayRestaurantSize(restaurant);
 
-    // Menu loop
+    // menu loop
     do {
         printf("Menu:\n");
         printf("1. Add table\n");
@@ -93,7 +93,7 @@ int main() {
 
         switch (choice) {
             case 1:
-                // Add a table to the restaurant
+                // add table to restaurant
                 printf("Enter the dimensions of the table:\n");
                 printf("Length: ");
                 scanf("%f", &tableLength);
@@ -105,13 +105,13 @@ int main() {
                 }
                 break;
             case 2:
-                // Remove a table from the restaurant
+                // remove table from restaurant
                 printf("Enter the table number to remove: ");
                 scanf("%d", &tableNumber);
                             removeTable(&restaurant, tableNumber);
             break;
         case 3:
-            // Display the tables in the restaurant
+            // display tables in restaurant
             displayTables(restaurant);
             break;
         case 4:
@@ -125,4 +125,5 @@ int main() {
 
 return 0;
 }
+
 
