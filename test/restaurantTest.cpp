@@ -1,10 +1,28 @@
 #include <catch2/catch.hpp>
+#include "../include/restaurant.h"
+#define maxTables 10
 
+struct Restaurant
+      {
+        float length;
+        float width;
+        struct Table tables[maxTables];
+        int numTables;
+      };
+struct Table 
+  {
+    int tableNumber;
+    float length;
+    float width;
+  };
 SCENARIO("CreatingRestaurantWithPositiveParameter")
 {
     GIVEN("A User sets the size of the restaurant")
     {
-
+      struct Restaurant restaurant;
+      restaurant.length=2;
+      restaurant.width=3;
+      displayRestaurantSize(restaurant)
     }    
     WHEN("The parameters are correct")
     {
@@ -12,21 +30,23 @@ SCENARIO("CreatingRestaurantWithPositiveParameter")
     }
     THEN("The size of the restaurant is created")
     {
-
+      REQUIRE()
     }
 }
 SCENARIO("CreatingRestaurantWithNegativeCoordinates")
 {
    GIVEN("A User sets the size of the restaurant")
     {
-
+      
+      restaurant.length=2;
+      restaurant.width=-3;
     }
     WHEN("The parameters are negative.")
     {
       
 
     }
-    THEN("A Errorwaning will be sent.")
+    THEN("A Errorwarning will be sent.")
     {
       
     }
@@ -35,7 +55,8 @@ SCENARIO("CreateATableInTheRestaurant")
 {
   GIVEN("User wants create a Table")
   {
-
+    struct Restaurant restaurant;
+    
   }
   WHEN("Table is in the restaurant")
   {
