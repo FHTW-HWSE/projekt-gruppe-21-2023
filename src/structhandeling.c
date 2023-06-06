@@ -42,7 +42,7 @@ void addPerson(struct person *old){
 
     new = old;
 
-    while(new->next =! NULL){
+    while(new->next != NULL){
         new = new->next;
     }
     old->next = new;
@@ -58,7 +58,7 @@ void addTable(struct table *old){
 
     new = old;
 
-    while(new->next =! NULL){
+    while(new->next != NULL){
         new = new->next;
     }
     old->next = new;
@@ -74,7 +74,7 @@ void addBooking(struct booking *old){
 
     new = old;
 
-    while(new->next =! NULL){
+    while(new->next != NULL){
         new = new->next;
     }
     old->next = new;
