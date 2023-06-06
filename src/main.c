@@ -21,9 +21,12 @@ extern int global_variable;
 //TODO Header ins Include File brinngen und aufräumen
 
 
-#include "structhandeling.h"
-#include "parser.h"
-#include "filehandeling.h"
+#include "../include/structhandeling.h"
+#include "../include/parser.h"
+#include "../include/filehandeling.h"
+#include "../include/restaurant.h"
+#include "../include/contact.h"
+#include "../include/booking.h"
 
 /*
 Tisch

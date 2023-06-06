@@ -1,8 +1,8 @@
 // TODO Header ins Include File brinngen und aufräumen
 
-#include "filehandeling.h"
-#include "structhandeling.h"
-#include "parser.h"
+#include "../include/filehandeling.h"
+#include "../include/structhandeling.h"
+#include "../include/parser.h"
 
 /*! fn getRows
     @brief gibt aus wie viele Zeilen ein File hat indem es die Zeichen /n sucht
