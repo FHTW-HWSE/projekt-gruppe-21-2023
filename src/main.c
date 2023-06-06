@@ -21,9 +21,10 @@ extern int global_variable;
 //TODO Header ins Include File brinngen und aufräumen
 
 
-#include "main.h"
+#include "structhandeling.h"
 #include "parser.h"
 #include "filehandeling.h"
+
 /*
 Tisch
     x
@@ -60,7 +61,7 @@ Database.csv
  */  
 
 
-int main (int argc, char ** argv){
+int main (){
 
 
 

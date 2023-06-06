@@ -1,7 +1,8 @@
 // TODO Header ins Include File brinngen und aufräumen
 
-#include "filehandeling.c"
-#include "main.c"
+#include "filehandeling.h"
+#include "structhandeling.h"
+#include "parser.h"
 
 /*! fn getRows
     @brief gibt aus wie viele Zeilen ein File hat indem es die Zeichen /n sucht
@@ -10,26 +11,26 @@
     sollte helfen beim einlesen der Daten aus den Strings in die Structs
 */
 
-int getRows(char *filename)
-{
+int getRows(char *filename){
     FILE *file;
     int numRows = 0;
     char next;
 
-    file = fopen(*filename, 'r');
+    file = fopen(filename, "r");
 
-    if(file == NULL)
+    if (file == NULL)
     {
         return -1;
     }
 
     do
     {
-        next = fgets(file);
-        if (next == '/n')
+        next = fgetc(file);
+        if (next == 10) // Ascii 10 ist der Zeilenumbruch
         {
             numRows++;
         }
+
     } while (next != EOF);
 
     return numRows;
@@ -43,12 +44,11 @@ int getRows(char *filename)
     @return ein int in dem die Länge des eingelesenen Strings steht
 */
 
-int readFile(char *filename, char *text) 
-{
+int readFile(char *filename, char *text) {
     FILE *file;
     int i = 0;
 
-    file = fopen(filename, 'r');
+    file = fopen(filename, "r");
 
     if (file == NULL)
     {
@@ -74,16 +74,16 @@ int readFile(char *filename, char *text)
     @return 0 für Erfolgreich
 */
 
-int writeFile(char *filename, char *inputString){
+int writeFile(char *filename, char *inputString, char *mode){
     FILE *file;
 
-    file = fopen(filename, 'a');
+    file = fopen(filename, mode);
 
-    if( file == NULL){
+    if( file == NULL ) {
         return -1;
     }
 
-    fprintf("%s", inputString);
+    fprintf(file, "%s", inputString);
 
     fclose(file);
     return 0;
