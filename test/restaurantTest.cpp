@@ -2,31 +2,17 @@
 #include "../include/restaurant.h"
 #define maxTables 10
 
-struct Restaurant
-      {
-        float length;
-        float width;
-        struct Table tables[maxTables];
-        int numTables;
-      };
-struct Table 
-  {
-    int tableNumber;
-    float length;
-    float width;
-  };
+struct Restaurant restaurant;
 SCENARIO("CreatingRestaurantWithPositiveParameter")
 {
     GIVEN("A User sets the size of the restaurant")
     {
-      struct Restaurant restaurant;
       restaurant.length=2;
-      restaurant.width=3;
-      displayRestaurantSize(restaurant)
+      restaurant.width=3;      
     }    
     WHEN("The parameters are correct")
     {
-
+      if()
     }
     THEN("The size of the restaurant is created")
     {
@@ -55,61 +41,79 @@ SCENARIO("CreateATableInTheRestaurant")
 {
   GIVEN("User wants create a Table")
   {
+    struct Table table;
     struct Restaurant restaurant;
-    
+    restaurant.length=2;
+    restaurant.width=4;
+    WHEN("Table is in the restaurant")
+    {
+    int checker=addTable(*restaurant,2,2);
+    THEN("A table is created in the restaurant")
+     {
+      REQUIRE(checker == 1);
+     }
+    }
   }
-  WHEN("Table is in the restaurant")
-  {
-
-  }
-  THEN("A table is created in the restaurant")
-  {
-
-  }
+  
+  
 }
 SCENARIO("CreateTableOutsideOfTheRestaurantWithNegativeParamter")
 {
  GIVEN("User wants create a Table")
   {
-
+    struct Table table;
+    struct Restaurant restaurant;
+    restaurant.length=2;
+    restaurant.width=4;
+   WHEN("Table is outside of the restaurant")
+   {
+    int checker=addTable(*restaurant,3,-5); 
+     THEN("User gets an Error-Message")
+     {
+       REQUIRE(checker==0);
+     }
+   }
   }
-  WHEN("Table is outside of the restaurant")
-  {
-
-  }
-  THEN("User gets an Error-Message")
-  {
-
-  } 
+  
+  
 }
 
 SCENARIO("CreateTableOnAnExistingTable")
 {
   GIVEN("User wants create a Table")
   {
-
+    struct Table table;
+    struct Restaurant restaurant;
+    restaurant.length=2;
+    restaurant.width=4;
+       
+   WHEN("There is already a table")
+   {
+    int checker=addTable(*restaurant,2,3);
+     THEN("User gets an Error-Message")
+     {
+      REQUIRE(checker==1);
+     } 
+   }
   }
-  WHEN("There is already a table")
-  {
-
-  }
-  THEN("User gets an Error-Message")
-  {
-
-  } 
 }
 SCENARIO("CreateTableOutsideOfTheRestaurantWithPostiveParamter")
 {
  GIVEN("User wants create a Table")
   {
-
+    struct Table table;
+    struct Restaurant restaurant;
+    restaurant.length=2;
+    restaurant.width=4;
+    WHEN("Table is outside of the restaurant")
+    {
+     int checker=addTable(*restaurant,10,34);
+     THEN("User gets an Error-Message")
+      {
+        REQUIRE(checker==0);
+      } 
+    }
   }
-  WHEN("Table is outside of the restaurant")
-  {
-
-  }
-  THEN("User gets an Error-Message")
-  {
-
-  } 
+  
+  
 }
