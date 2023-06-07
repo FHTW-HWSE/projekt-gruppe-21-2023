@@ -1,5 +1,4 @@
-#ifndef RESTAURANT_H;
-#define ReSTAURANT_H;
+#pragma once
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,7 +18,5 @@ struct Restaurant
 };
 void displayRestaurantSize(struct Restaurant restaurant);
 void displayTables(struct Restaurant restaurant);
-int addTable(struct Restaurant *restaurant, float length, float width);
-int removeTable(struct Restaurant *restaurant, int tableNumber);
-int main();
-#endif
+int addTable(struct Restaurant restaurant, float length, float width);
+int removeTable(struct Restaurantrestaurant, int tableNumber);

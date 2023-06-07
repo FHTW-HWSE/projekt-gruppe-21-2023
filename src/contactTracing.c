@@ -18,12 +18,41 @@ struct booking *findBookingfromPerson(struct booking toSearch, struct person toF
 
 }
 
-int *findContact(int *returnArray, struct booking *startBooking, struct booking *findContact, struct person *toFind, struct person *startPerson){
+int *findContact(int *returnArray, struct booking *startBooking, struct booking *findContact, struct person *toFind, struct person *startPerson, struct table *startTable){
+    struct table tempTableToComp1;
+    struct table tampTableToComp2;
+    int i = 0;
+
     while(startBooking->next != NULL){
-        if(findContact->starttime > startBooking->endtime || findContact->endtime < startBooking->starttime)  // toDo mit Stingcompare machen
+        
+        if(strcmp(findContact->starttime, startBooking->endtime) > 0 || strcmp(findContact->endtime, startBooking->starttime) < 0) {
+            //Wenn jemand gegangen ist bevor ein anderer gekommen ist und wenn jemand gekommen ist nachdem jemand anderer gegangen ist können sie keinen Kontakt haben.
+            //Alle andere sind betroffen
+            if(findContact->idPerson != startBooking->idPerson){
+                //Falls eine Person zwei Tische nebeneinander gebucht hat
+            
+                while(startTable->next != NULL){
+                    if(startTable->id == findContact->idTable){
+                        tempTableToComp1 = startTable;
+                        //Tisch der Person von dem wir das Contact Tracing starten
+
+                    }
+                    
+                    if(startTable->id == startBooking->idTable){
+                        tempTableToComp2 = startTable;
+                        //Tisch der Person die potentiel Kontakt hatte
+                    }
+                    if(tempTableToComp1->x - tempTableToComp2->x == 1 || tempTableToComp1->x - tempTableToComp2->x == -1 || tempTableToComp1->y - tempTableToComp2->y == 1 || tempTableToComp1->x - tempTableToComp2->x == -1){
+                        returnArray[i] = startBooking->idPerson;
+                        i++;                    
+                    }
+                    startTable = startTable->next;
+                }
+            }
+        }
 
 
-
+        startBooking = startBooking->next;
     }
 
     return returnArray;
