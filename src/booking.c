@@ -2,71 +2,68 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_NAME_LEN 50
-#define MAX_PHONE_LEN 25
+#define nameLength 50
+#define timeLength 17
+#define telNumLen 25
 
-struct Reservation {
-    int time; // time in hours since the start of the day
-    char name[MAX_NAME_LEN];
-    char phone[MAX_PHONE_LEN];
-};
+typedef struct booking {
+    int idPerson;
+    int idTable;
+    char startTime[timeLength];
+    char endTime[timeLength];
+    struct booking* next;
+} booking;
 
 int main() {
-    int num_reservations = 0;
-    struct Reservation *reservations = NULL;
+    int num_bookings = 0;
+    struct booking* bookings = NULL;
 
-    int time, duration;
-    char name[MAX_NAME_LEN];
-    char phone[MAX_PHONE_LEN];
+    int idPerson, idTable;
+    char startTime[timeLength];
+    char endTime[timeLength];
 
-    // prompt for time and contact person
-    printf("Please enter the time (in hours since the start of the day): ");
-    scanf("%d", &time);
+    // prompt for person ID, table ID, start time, and end time
+    printf("Please enter the person ID: ");
+    scanf("%d", &idPerson);
 
-    printf("Please enter the name of the contact person: ");
-    scanf("%s", name);
+    printf("Please enter the table ID: ");
+    scanf("%d", &idTable);
 
-    printf("Please enter the phone number of the contact person: ");
-    scanf("%s", phone);
+    printf("Please enter the start time: ");
+    scanf("%s", startTime);
 
-    // prompt for reservation duration (optional)
-    printf("Do you want to change the reservation duration? (0 = no, 1 = yes): ");
-    int response;
-    scanf("%d", &response);
+    printf("Please enter the end time: ");
+    scanf("%s", endTime);
 
-    if (response) {
-        printf("Please enter the reservation duration in hours: ");
-        scanf("%d", &duration);
-    } else {
-        duration = 1; // Default: 1 hour 
-    }
+    // saving the booking
+    struct booking* new_bookings = realloc(bookings, (num_bookings + 1) * sizeof(struct booking));
 
-    // saving the reservation
-    struct Reservation *new_reservations = realloc(reservations, (num_reservations + 1) * sizeof(struct Reservation));
-
-    if (!new_reservations) {
+    if (!new_bookings) {
         printf("Error: Memory could not be allocated!\n");
-        free(reservations);
+        free(bookings);
         return 1;
     }
 
-    reservations = new_reservations;
+    bookings = new_bookings;
 
-    reservations[num_reservations].time = time;
-    strncpy(reservations[num_reservations].name, name, MAX_NAME_LEN);
-    strncpy(reservations[num_reservations].phone, phone, MAX_PHONE_LEN);
+    bookings[num_bookings].idPerson = idPerson;
+    bookings[num_bookings].idTable = idTable;
+    strncpy(bookings[num_bookings].startTime, startTime, timeLength);
+    strncpy(bookings[num_bookings].endTime, endTime, timeLength);
+    bookings[num_bookings].next = NULL;
 
-    num_reservations++;
+    num_bookings++;
 
-    // output of reservation list
-    printf("\n--- reservations ---\n");
-    for (int i = 0; i < num_reservations; i++) {
-        printf("time: %d, name: %s, phone number: %s\n", reservations[i].time, reservations[i].name, reservations[i].phone);
+    // output of booking list
+    printf("\n--- Bookings ---\n");
+    for (int i = 0; i < num_bookings; i++) {
+        printf("ID: %d, Table: %d, Start Time: %s, End Time: %s\n", bookings[i].idPerson, bookings[i].idTable, bookings[i].startTime, bookings[i].endTime);
     }
-    printf("-----------------------\n\n");
+    printf("----------------\n\n");
 
     // release of memory
-    free(reservations);
+    free(bookings);
 
     return 0;
 }
+
