@@ -3,16 +3,17 @@
 
 #define MAX_TABLES 10
 
-struct Table {
-    int tableNumber;
-    float length;
-    float width;
-};
+typedef struct table {
+    int x;
+    int y;
+    int id;
+    struct table* next;
+} table;
 
 struct Restaurant {
     float length;
     float width;
-    struct Table tables[MAX_TABLES];
+    table* tables[MAX_TABLES];
     int numTables;
 };
 
@@ -25,22 +26,23 @@ void displayRestaurantSize(struct Restaurant restaurant) {
 void displayTables(struct Restaurant restaurant) {
     printf("--- Tables ---\n");
     for (int i = 0; i < restaurant.numTables; i++) {
-        printf("Table %d: Length=%.2f, Width=%.2f\n", restaurant.tables[i].tableNumber, restaurant.tables[i].length, restaurant.tables[i].width);
+        printf("Table %d: X=%d, Y=%d, ID=%d\n", i+1, restaurant.tables[i]->x, restaurant.tables[i]->y, restaurant.tables[i]->id);
     }
     printf("-------------\n");
 }
 
 // add table to restaurant
-int addTable(struct Restaurant *restaurant, float length, float width) {
+int addTable(struct Restaurant* restaurant, int x, int y) {
     if (restaurant->numTables >= MAX_TABLES) {
         printf("Error: Maximum number of tables reached.\n");
         return 0;
     }
 
-    struct Table newTable;
-    newTable.tableNumber = restaurant->numTables + 1;
-    newTable.length = length;
-    newTable.width = width;
+    table* newTable = (table*)malloc(sizeof(table));
+    newTable->x = x;
+    newTable->y = y;
+    newTable->id = restaurant->numTables + 1;
+    newTable->next = NULL;
 
     restaurant->tables[restaurant->numTables] = newTable;
     restaurant->numTables++;
@@ -49,27 +51,38 @@ int addTable(struct Restaurant *restaurant, float length, float width) {
 }
 
 // remove table from restaurant
-int removeTable(struct Restaurant *restaurant, int tableNumber) {
-    for (int i = 0; i < restaurant->numTables; i++) {
-        if (restaurant->tables[i].tableNumber == tableNumber) {
-            for (int j = i; j < restaurant->numTables - 1; j++) {
-                restaurant->tables[j] = restaurant->tables[j + 1];
-            }
-            restaurant->numTables--;
-            printf("Table %d removed.\n", tableNumber);
-            return 1;
-        }
+int removeTable(struct Restaurant* restaurant, int tableNumber) {
+    if (tableNumber <= 0 || tableNumber > restaurant->numTables) {
+        printf("Error: Invalid table number.\n");
+        return 0;
     }
-    
-    printf("Error: Table %d not found.\n", tableNumber);
-    return 0;
+
+    table* prev = NULL;
+    table* current = restaurant->tables[tableNumber - 1];
+
+    if (current == NULL) {
+        printf("Error: Table %d not found.\n", tableNumber);
+        return 0;
+    }
+
+    if (prev != NULL) {
+        prev->next = current->next;
+    } else {
+        restaurant->tables[tableNumber - 1] = current->next;
+    }
+
+    free(current);
+    restaurant->numTables--;
+
+    printf("Table %d removed.\n", tableNumber);
+    return 1;
 }
 
 int main() {
     struct Restaurant restaurant;
     float newLength, newWidth;
     int choice, tableNumber;
-    float tableLength, tableWidth;
+    int tableX, tableY;
 
     // prompt user to enter the initial size of restaurant
     printf("Please enter the initial size of the restaurant:\n");
@@ -94,13 +107,13 @@ int main() {
         switch (choice) {
             case 1:
                 // add table to restaurant
-                printf("Enter the dimensions of the table:\n");
-                printf("Length: ");
-                scanf("%f", &tableLength);
-                printf("Width: ");
-                scanf("%f", &tableWidth);
+                printf("Enter the position of the table:\n");
+                printf("X: ");
+                scanf("%d", &tableX);
+                printf("Y: ");
+                scanf("%d", &tableY);
 
-                if (addTable(&restaurant, tableLength, tableWidth)) {
+                if (addTable(&restaurant, tableX, tableY)) {
                     printf("Table added successfully.\n");
                 }
                 break;
@@ -108,22 +121,20 @@ int main() {
                 // remove table from restaurant
                 printf("Enter the table number to remove: ");
                 scanf("%d", &tableNumber);
-                            removeTable(&restaurant, tableNumber);
-            break;
-        case 3:
-            // display tables in restaurant
-            displayTables(restaurant);
-            break;
-        case 4:
-            printf("Exiting the program.\n");
-            exit(0);
-        default:
-            printf("Invalid choice. Please try again.\n");
-            break;
-    }
-} while (choice != 4);
+                removeTable(&restaurant, tableNumber);
+                break;
+            case 3:
+                // display tables in restaurant
+                displayTables(restaurant);
+                break;
+            case 4:
+                printf("Exiting the program.\n");
+                exit(0);
+            default:
+                printf("Invalid choice. Please try again.\n");
+                break;
+        }
+    } while (choice != 4);
 
-return 0;
+    return 0;
 }
-
-
