@@ -5,7 +5,7 @@
 #include "contact.h"
 
 
-struct booking *findBookingfromPerson(struct booking toSearch, struct person toFind){
+struct booking *findBookingfromPerson(struct booking *toSearch, struct person *toFind){
     while(toSearch->next != NULL){
         if(toFind->id == toSeach->idPerson){
 
@@ -18,9 +18,10 @@ struct booking *findBookingfromPerson(struct booking toSearch, struct person toF
 
 }
 
-int *findContact(int *returnArray, struct booking *startBooking, struct booking *findContact, struct person *toFind, struct person *startPerson, struct table *startTable){
-    struct table tempTableToComp1;
-    struct table tampTableToComp2;
+
+int *findContact(int distance, int *returnArray, struct booking *startBooking, struct booking *findContact, struct person *toFind, struct person *startPerson, struct table *startTable){
+    struct table *tempTableToComp1;
+    struct table *tempTableToComp2;
     int i = 0;
 
     while(startBooking->next != NULL){
@@ -42,7 +43,7 @@ int *findContact(int *returnArray, struct booking *startBooking, struct booking 
                         tempTableToComp2 = startTable;
                         //Tisch der Person die potentiel Kontakt hatte
                     }
-                    if(tempTableToComp1->x - tempTableToComp2->x == 1 || tempTableToComp1->x - tempTableToComp2->x == -1 || tempTableToComp1->y - tempTableToComp2->y == 1 || tempTableToComp1->x - tempTableToComp2->x == -1){
+                    if(betrag(tempTableToComp1->x - tempTableToComp2->x == 1 + tempTableToComp1->x - tempTableToComp2->x == -1) <= distance){
                         returnArray[i] = startBooking->idPerson;
                         i++;                    
                     }
@@ -57,3 +58,19 @@ int *findContact(int *returnArray, struct booking *startBooking, struct booking 
 
     return returnArray;
 }   
+
+
+
+int betrag (int i){
+    if(i >= 0){
+        return i;
+    }
+    if(i < 0){
+        return -i;
+    }
+} 
+
+
+    /* 2   -   1    -    2
+             |
+     1   -   0    -    1 */

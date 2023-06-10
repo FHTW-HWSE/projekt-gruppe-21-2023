@@ -187,7 +187,7 @@ int parseBooking (char *text, struct booking *toBooking){
 
         }while(text[i] != ',');
     
-        toBooking->startTime[k+1] = '\0';
+        toBooking->startTime[k + 1] = '\0';
 
         i++;
         k = 0;
@@ -214,4 +214,155 @@ int parseBooking (char *text, struct booking *toBooking){
     
     return b;
 
+}
+
+
+int personToString(struct person *startPerson, char *text){
+    int i = 0;
+    int k = 0;
+    char temp[nameLength];
+
+    do{
+        while(startPerson->name[k] != '\0'){
+             text[i] = startPerson->name[k];
+            i++; k++;
+        }
+
+        k = 0;
+        text[i] = ',';
+        i++;
+
+        while(startPerson->number != '\0'){
+            text[i] = startPerson-number[k];
+            i++; k++;
+        }
+
+        k = 0;
+        text[i] = ',';
+        i++;
+
+        itoa(startPerson->id, temp, 10);
+
+        while(temp[k] != '\0'){
+            text[i] =  temp[k];
+            i++; k++;
+        }
+        k = 0;
+        text[i] = 10;  //10 ist Ascii für Linefeed -> Zeilenumbruch
+        i++;
+
+        if(startPerson->next !=  NULL){
+            startPerson = startPerson.next;
+        }
+
+
+    }while(startPerson->next != NULL);
+
+    return i;
+}
+
+
+int tableToString(struct table *startTable, char *text){
+
+    if(startTable == NULL){
+        return -1;
+    }
+
+    int i = 0;
+    int k = 0;
+    char temp[nameLength];
+
+    do{
+        itoa(startTable->x, temp, 10);
+
+        while(temp[k] != '\0'){
+            text[i] = temp[k];
+            i++; k++;
+        }
+
+        text[i] = ',';
+        i++; k = 0;
+        
+        itoa(startTable->y, temp, 10);
+
+        while(temp[k] != '\0'){
+            text[i] =  temp[k]
+            i++; k++;
+        }
+        text[i] = ',';
+        i++; k = 0;
+
+        itoa(startTable->id, temp, 10);
+        while(temp[k] != '\0'){
+            text[i] = temp[k];
+            i++; k++;
+        }
+
+        k = 0;
+        text[i] = 10;
+        i++;
+
+        if(startTable->next != NULL){
+            startTable = startTable->next;
+
+        }
+
+    }while (startTable->next != NULL);
+    return i;
+}
+
+int bookingToString(struct booking startBooking, char *text){
+    int i = 0;
+    int k = 0;
+    char temp[nameLength];
+
+    do{
+
+        itoa(startBooking->idPerson, temp, 10);
+
+        while(temp[k] != '\0'){
+            text[i] = temp[k];
+            i++; k++;
+        }
+
+        k = 0;
+        text[i] = ',';
+        i++;
+        
+        itoa(startBooking->idTable, temp, 10);
+
+        while(temp[k] != '\0'){
+            text[i] = temp[k];
+            i++; k++;
+        }
+
+        k = 0;
+        text[i] = ',';
+        i++;
+
+        while(startBooking->startTime[k] != '\0'){
+            text[i] = startBooking->startTime[k];
+            i++; k++;
+        }
+
+        k = 0;
+        text[i] = ',';
+        i++;
+
+        while(startBooking->enTime[k] != '\0'){
+            text[i] = startBooking->endTime[k];
+            i++; k++;
+        }
+
+        k = 0;
+        text[i] = 10;
+        i++;
+
+        if(startBooking->next != NULL){
+            startBooking = startBooking->next;
+        }
+
+    }while(startBooking->next != NULL);
+
+    return i;
 }
