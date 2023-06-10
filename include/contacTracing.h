@@ -4,5 +4,6 @@
 #include <stdlib.h>
 #include "structhandeling.h"
 
-struct booking *findBookingfromPerson (struct booking toSearch, struct person toFind);
-int *findContact(int *returnArray, struct booking *startBooking, struct booking *findContact, struct person *toFind, struct person *startPerson);
+struct booking *findBookingfromPerson (struct booking *toSearch, struct person *toFind);
+int *findContact(int distance, int *returnArray, struct booking *startBooking, struct booking *findContact, struct person *toFind, struct person *startPerson, struct table *startTable);
+int betrag(int i);

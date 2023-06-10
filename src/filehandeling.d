@@ -1,5 +1,5 @@
 src/filehandeling.o: src/filehandeling.c /usr/include/stdc-predef.h \
- include/filehandeling.h /usr/include/stdio.h \
+ src/../include/filehandeling.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -52,9 +52,10 @@ src/filehandeling.o: src/filehandeling.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
- include/structhandeling.h include/parser.h include/structhandeling.h
+ src/../include/structhandeling.h src/../include/parser.h \
+ src/../include/structhandeling.h
 /usr/include/stdc-predef.h:
-include/filehandeling.h:
+src/../include/filehandeling.h:
 /usr/include/stdio.h:
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 /usr/include/features.h:
@@ -114,6 +115,6 @@ include/filehandeling.h:
 /usr/include/x86_64-linux-gnu/bits/time.h:
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
-include/structhandeling.h:
-include/parser.h:
-include/structhandeling.h:
+src/../include/structhandeling.h:
+src/../include/parser.h:
+src/../include/structhandeling.h:

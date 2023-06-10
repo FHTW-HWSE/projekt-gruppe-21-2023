@@ -53,7 +53,8 @@ src/contactTracing.o: src/contactTracing.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
- include/structhandeling.h include/structhandeling.h include/contact.h
+ include/structhandeling.h include/structhandeling.h include/contact.h \
+ include/contacTracing.h
 /usr/include/stdc-predef.h:
 /usr/include/stdio.h:
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
@@ -118,3 +119,4 @@ include/parser.h:
 include/structhandeling.h:
 include/structhandeling.h:
 include/contact.h:
+include/contacTracing.h:
