@@ -11,7 +11,8 @@ typedef struct {
     int id;
 } Contact;
 
-void bookTable(Contact* contact) {
+void addContact(Contact* contact)
+{
     printf("Bitte geben Sie den Namen ein: ");
     fgets(contact->name, sizeof(contact->name), stdin);
     contact->name[strcspn(contact->name, "\n")] = '\0';
@@ -32,7 +33,7 @@ int main() {
 
     printf("Willkommen im Restaurant!\n");
 
-    bookTable(&contact);
+    addContact(&contact);
 
     printf("Kontaktdaten:\n");
     printf("Name: %s\n", contact.name);

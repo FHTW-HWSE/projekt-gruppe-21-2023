@@ -1,9 +1,8 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include "parser.h"
-#include "structhandeling.h"
-#include "contact.h"
-#include "contacTracing.h"
+#include "../include/parser.h"
+#include "../include/structhandeling.h"
+#include "../include/contact.h"
+#include "../include/contacTracing.h"
 
 //Braucht den Anfang der Liste von Buchungen und eine Person die Gefunden werden muss
 //Kann man vielleicht optimieren in dem man die ID der Persion verwendet. Ist im Grunde gleich

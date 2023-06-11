@@ -68,3 +68,36 @@ int main() {
     return 0;
 }
 
+int addBooking(booking* booking)
+{
+ int num_bookings = 0;
+    struct booking* bookings = NULL;
+
+    int idPerson, idTable;
+    char startTime[timeLength];
+    char endTime[timeLength];
+
+    // prompt for person ID, table ID, start time, and end time
+    printf("Please enter the person ID: ");
+    scanf("%d", &idPerson);
+
+    printf("Please enter the table ID: ");
+    scanf("%d", &idTable);
+
+    printf("Please enter the start time: ");
+    scanf("%s", startTime);
+
+    printf("Please enter the end time: ");
+    scanf("%s", endTime);
+
+}
+void showBookingList(booking* booking)
+{
+    int num_bookings=sizeof(booking);
+    printf("\n--- Bookings ---\n");
+    for (int i = 0; i < num_bookings; i++) {
+        printf("ID: %d, Table: %d, Start Time: %s, End Time: %s\n", booking[i].idPerson, booking[i].idTable, booking[i].startTime, booking[i].endTime);
+    }
+    printf("----------------\n\n");
+
+}

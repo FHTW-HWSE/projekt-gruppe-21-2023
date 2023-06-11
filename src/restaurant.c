@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -51,6 +52,18 @@ int addTable(struct Restaurant* restaurant, int x, int y) {
             printf("Error: A table already exists at coordinates (%d, %d).\n", x, y);
             return 0;
         }
+    // check if one of the coorinates is negative
+        if(x<0 || y<0)
+        {
+            printf("Error: One of the coordinates is negaitve.");
+            return 0;
+        }
+        if (x>restaurant->length || y>restaurant->width )
+        {
+         printf("Error:The table is outside of the coordinates");
+         return 0;
+        }
+       
     }
 
     if (restaurant->numTables >= maxTables) {
@@ -191,7 +204,6 @@ int main() {
     // menu loop
     do {
         printf("Menu:\n");
-        printf("1. Add table\n");
         printf("2. Remove table\n");
         printf("3. Add person\n");
         printf("4. Change person's information\n");
@@ -203,18 +215,7 @@ int main() {
         scanf("%d", &choice);
 
         switch (choice) {
-            case 1:
-                // add table to restaurant
-                printf("Enter the position of the table:\n");
-                printf("X: ");
-                scanf("%d", &tableX);
-                printf("Y: ");
-                scanf("%d", &tableY);
-
-                if (addTable(&restaurant, tableX, tableY)) {
-                    printf("Table added successfully.\n");
-                }
-                break;
+            
             case 2:
                 // remove table from restaurant
                 printf("Enter the table number to remove: ");

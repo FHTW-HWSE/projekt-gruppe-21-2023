@@ -20,7 +20,7 @@ extern int global_variable;
 
 //TODO Header ins Include File brinngen und aufräumen
 
-
+#include <stdint.h>
 #include "../include/structhandeling.h"
 #include "../include/parser.h"
 #include "../include/filehandeling.h"
@@ -62,13 +62,53 @@ Database.csv
  *  
  *  
  */  
+struct Restaurant restaurant;
+struct Table table;
+struct Contact contact;
+struct Booking booking;
+int main()
+{
+ char command[30];
+ printf("Willkommen beim Reservierungsystem. Wie kann ich ihnen behilflich sein?");
+ scanf("%s",command);
+ for(;;)
+ {
+   if(strcmp(command,"dipslayRestaurant")==1)
+   {
+    displayRestaurantSize(restaurant);
+   }
+   if(strcmp(command,"displayTables")==1)
+   {
+    displayTables(restaurant);
+   }
+   if(strcmp(command,"addTable")==1)
+   {
+     int tableX,tableY;
+     
+     printf("Bitte geben sie die Position ein:\n");
+                printf("X: ");
+                scanf("%d", &tableX);
+                printf("Y: ");
+                scanf("%d", &tableY);
+      addTable(restaurant,tableX,tableY);          
+   }
+   if(strcmp(command,"removeTable")==1)
+   {
+     int tableID;
+     printf("Bitte geben sie die ID von Tisch ein");
+     scanf("%d", &tableID);
+     removeTable(restaurant,tableID);
+   }
+   if(strcmp(command,"displayPerson")==1)
+   {
+    displayPeople(restaurant);
+   }
+   if(strcmp(command,"finish")==1)
+   {
+    printf("Vielen Dank für das Benutzen von dem Reservierungssystem");
+    break;
+   }
+   if(strcmp(command,""))
 
-
-int main (){
-
-
-
-    printf("Hello World");
-    return 0;
-
+ }
 }

@@ -19,4 +19,5 @@ struct Restaurant
 void displayRestaurantSize(struct Restaurant restaurant);
 void displayTables(struct Restaurant restaurant);
 int addTable(struct Restaurant restaurant, float length, float width);
-int removeTable(struct Restaurantrestaurant, int tableNumber);
+int removeTable(struct Restaurant restaurant, int tableNumber);
+void displayPeople(struct Restaurant restaurant);
