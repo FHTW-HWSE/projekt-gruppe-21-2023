@@ -28,7 +28,7 @@ void addContact(Contact* contact)
     printf("Tisch erfolgreich gebucht!\n");
 }
 
-int main() {
+/*int main() {
     Contact contact;
 
     printf("Willkommen im Restaurant!\n");
@@ -41,4 +41,4 @@ int main() {
     printf("ID: %d\n", contact.id);
 
     return 0;
-}
+}*/

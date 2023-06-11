@@ -1,5 +1,4 @@
 // TODO Header ins Include File brinngen und aufräumen
-
 #include "parser.h"
 #include "structhandeling.h"
 
@@ -241,7 +240,7 @@ int personToString(struct person *startPerson, char *text){
         text[i] = ',';
         i++;
 
-        itoa(startPerson->id, temp, 10);
+        sprintf(temp, "%d" , startPerson->id);
 
         while(temp[k] != '\0'){
             text[i] =  temp[k];
@@ -273,8 +272,8 @@ int tableToString(struct table *startTable, char *text){
     char temp[nameLength];
 
     do{
-        itoa(startTable->x, temp, 10);
-
+        //tostring(, temp);
+        sprintf(temp, "%d" , startTable->x);
         while(temp[k] != '\0'){
             text[i] = temp[k];
             i++; k++;
@@ -283,7 +282,8 @@ int tableToString(struct table *startTable, char *text){
         text[i] = ',';
         i++; k = 0;
         
-        itoa(startTable->y, temp, 10);
+        //tostring(startTable->y, temp);
+        sprintf(temp, "%d" , startTable->y);
 
         while(temp[k] != '\0'){
             text[i] =  temp[k];
@@ -291,8 +291,10 @@ int tableToString(struct table *startTable, char *text){
         }
         text[i] = ',';
         i++; k = 0;
+        
+        sprintf(temp, "%d" , startTable->id);
+        //tostring(startTable->id, temp);
 
-        itoa(startTable->id, temp, 10);
         while(temp[k] != '\0'){
             text[i] = temp[k];
             i++; k++;
@@ -317,8 +319,8 @@ int bookingToString(struct booking *startBooking, char *text){
     char temp[nameLength];
 
     do{
-
-        itoa(startBooking->idPerson, temp, 10);
+        sprintf(temp, "%d" , startBooking->idPerson);
+        //tostring(startBooking->idPerson, temp);
 
         while(temp[k] != '\0'){
             text[i] = temp[k];
@@ -328,8 +330,8 @@ int bookingToString(struct booking *startBooking, char *text){
         k = 0;
         text[i] = ',';
         i++;
-        
-        itoa(startBooking->idTable, temp, 10);
+        sprintf(temp, "%d" , startBooking->idTable);
+        //tostring(startBooking->idTable, temp);
 
         while(temp[k] != '\0'){
             text[i] = temp[k];

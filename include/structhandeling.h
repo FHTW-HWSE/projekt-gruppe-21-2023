@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 #define nameLength 50
 #define timeLength 17
