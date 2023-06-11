@@ -8,7 +8,7 @@
 
 #define MAX_FILE_LENGHT 1000
 
-int writeFile(char *filename, char *inputString, char *mode);
+int writeFile(char *filename, char *inputString);
 int readFile(char *filename, char *text);
 int getRows(char *filename);
 

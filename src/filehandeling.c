@@ -74,10 +74,10 @@ int readFile(char *filename, char *text) {
     @return 0 für Erfolgreich
 */
 
-int writeFile(char *filename, char *inputString, char *mode){
+int writeFile(char *filename, char *inputString){
     FILE *file;
 
-    file = fopen(filename, mode);
+    file = fopen(filename, "w");
 
     if( file == NULL ) {
         return -1;

@@ -15,7 +15,7 @@ typedef struct booking {
     struct booking* next;
 } booking;
 
-int main() {
+/* int main() {
     int num_bookings = 0;
     struct booking* bookings = NULL;
 
@@ -66,7 +66,7 @@ int main() {
     free(bookings);
 
     return 0;
-}
+} */
 
 int addBooking(booking* booking)
 {

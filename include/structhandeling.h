@@ -8,6 +8,7 @@
 #define nameLength 50
 #define timeLength 17
 #define telNumLen  25
+#define MAX_BUFFER 2000
 
 typedef struct person {
     char name [nameLength];   
