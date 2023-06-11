@@ -1,5 +1,4 @@
-#ifndef  STRUCTHANDELING_H
-#define  STRUCTHANDELING_H
+#pragma once 
 
 #include <stdio.h>
 #include <string.h>
@@ -37,12 +36,9 @@ typedef struct booking {
 
 
 
-void addPerson(struct person *old);
-void addTable(struct table *old);
-void addBooking(struct booking *old);
+void addPersonList(struct person *old);
+void addTableList(struct table *old);
+void addBookingList(struct booking *old);
 void cleanPerson(struct person *toClean);
 void cleanTable(struct table *toClean);
 void cleanBooking(struct booking *toClean);
-
-
-#endif

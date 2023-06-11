@@ -1,30 +1,7 @@
-/*
- #ifndef FILENAME_H // Include guard
- #define FILENAME_H
- // Includes for headers required within this file
- #include <stdint.h>
- // Type definitions
- typedef uint8_t u8;
- // Shared macro literals
- #define MAX_QUEUE 64
-// Shared function-like macros
- #define ARRAY_SIZE(x) ((sizeof(x)) / (sizeof((x)[0])))
- // Prototypes of shared functions
- unsigned int some_function(u8 a, u8 b);
-// "Exports" of global variables
-extern int global_variable;
-#endif
-
-*/
-
-
-//TODO Header ins Include File brinngen und aufräumen
-
-#include <stdint.h>
+#include "../include/restaurant.h"
 #include "../include/structhandeling.h"
 #include "../include/parser.h"
 #include "../include/filehandeling.h"
-#include "../include/restaurant.h"
 #include "../include/contact.h"
 #include "../include/booking.h"
 
@@ -61,17 +38,24 @@ Database.csv
  * \struct
  *  
  *  
- */  
+ */ 
+
+/*
 struct Restaurant restaurant;
 struct Table table;
 struct Contact contact;
 struct Booking booking;
-int main()
+
+*/
+
+
+/* int main()
 {
+ struct Restaurant *restaurant = malloc(sizeof(restaurant));
  char command[30];
- printf("Willkommen beim Reservierungsystem. Wie kann ich ihnen behilflich sein?");
+ printf("Willkommen beim Reservierungsystem. Wie kann ich Ihnen behilflich sein?");
  scanf("%s",command);
- for(;;)
+ while(1)
  {
    if(strcmp(command,"dipslayRestaurant")==1)
    {
@@ -108,7 +92,121 @@ int main()
     printf("Vielen Dank für das Benutzen von dem Reservierungssystem");
     break;
    }
-   if(strcmp(command,""))
+   if(strcmp(command,"")){
+    
+   }
+
 
  }
+} */
+
+
+
+
+
+int main() {
+    struct Restaurant *restaurant = malloc (sizeof(restaurant));
+    float newLength, newWidth;
+    int choice, tableNumber, personID;
+    int tableX, tableY;
+    char personName[nameLength];
+    char personNumber[telNumLen];
+
+    // initialize restaurant
+    restaurant->length = 0.0f;
+    restaurant->width = 0.0f;
+    restaurant->numTables = 0;
+    restaurant->people = NULL;
+
+    // prompt user to enter initial size of restaurant
+    printf("Please enter the initial size of the restaurant in m:\n");
+    printf("Length: ");
+    scanf("%f", &restaurant->length);
+    printf("Width: ");
+    scanf("%f", &restaurant->width);
+
+    // display initial size of restaurant
+    displayRestaurantSize(restaurant);
+
+    // menu loop
+    do {
+        printf("Menu:\n");
+        printf("2. Remove table\n");
+        printf("3. Add person\n");
+        printf("4. Change person's information\n");
+        printf("5. Remove person\n");
+        printf("6. Display tables\n");
+        printf("7. Display people\n");
+        printf("8. Exit\n");
+        printf("9. Save data\n");
+        printf("10. Start Contact-Tracing\n");
+        printf("11. Load data from Files\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            
+            case 2:
+                // remove table from restaurant
+                printf("Enter the table number to remove: ");
+                scanf("%d", &tableNumber);
+                removeTable(restaurant, tableNumber);
+                break;
+            case 3:
+                // add person to restaurant
+                printf("Enter the person's name: ");
+                scanf("%s", personName);
+                printf("Enter the person's phone number: ");
+                scanf("%s", personNumber);
+                addPerson(restaurant, personName, personNumber);
+                break;
+            case 4:
+                // change person's information
+                printf("Enter the person's ID: ");
+                scanf("%d", &personID);
+                printf("Enter the new name: ");
+                scanf("%s", personName);
+                printf("Enter the new phone number: ");
+                scanf("%s", personNumber);
+                if (changePerson(restaurant, personID, personName, personNumber)) {
+                    printf("Person information updated successfully.\n");
+                } else {
+                    printf("Person not found.\n");
+                }
+                break;
+            case 5:
+                // remove person from restaurant
+                printf("Enter the person's ID to remove: ");
+                scanf("%d", &personID);
+                if (removePerson(restaurant, personID)) {
+                    printf("Person removed successfully.\n");
+                } else {
+                    printf("Person not found.\n");
+                }
+                break;
+            case 6:
+                // display tables in restaurant
+                displayTables(restaurant);
+                break;
+            case 7:
+                // display people in restaurant
+                displayPeople(restaurant);
+                break;
+            case 8:
+                // exit program
+                printf("Exiting...\n");
+                break;
+            case 9;
+
+
+            case 10;
+            default:
+                printf("Invalid choice. Please try again.\n");
+                break;
+        }
+
+        printf("\n");
+    } while (choice != 8);
+
+    return 0;
 }

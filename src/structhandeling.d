@@ -52,7 +52,7 @@ src/structhandeling.o: src/structhandeling.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
- include/structhandeling.h include/structhandeling.h
+ include/structhandeling.h
 /usr/include/stdc-predef.h:
 include/parser.h:
 /usr/include/stdio.h:
@@ -114,5 +114,4 @@ include/parser.h:
 /usr/include/x86_64-linux-gnu/bits/time.h:
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
-include/structhandeling.h:
 include/structhandeling.h:

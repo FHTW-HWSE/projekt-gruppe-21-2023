@@ -52,8 +52,7 @@ src/filehandeling.o: src/filehandeling.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
- src/../include/structhandeling.h src/../include/parser.h \
- src/../include/structhandeling.h
+ src/../include/structhandeling.h src/../include/parser.h
 /usr/include/stdc-predef.h:
 src/../include/filehandeling.h:
 /usr/include/stdio.h:
@@ -117,4 +116,3 @@ src/../include/filehandeling.h:
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 src/../include/structhandeling.h:
 src/../include/parser.h:
-src/../include/structhandeling.h:

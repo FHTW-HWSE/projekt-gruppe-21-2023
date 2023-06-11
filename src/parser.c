@@ -87,7 +87,7 @@ int parsePerson(char *text, struct person *toPerson) {
 
         toPerson->id = atoi(tempId);
 
-        addPerson(toPerson);
+        addPersonList(toPerson);
         toPerson = toPerson->next;      
         p++;
 
@@ -144,7 +144,7 @@ int parseTable (char *text, struct table *toTable){
         i++;
         t++;
 
-        addTable(toTable);
+        addTableList(toTable);
         toTable = toTable->next;
 
     } while(text[i]!=EOF);
@@ -205,7 +205,7 @@ int parseBooking (char *text, struct booking *toBooking){
         k = 0;
 
 
-        addBooking(toBooking);
+        addBookingList(toBooking);
         toBooking = toBooking->next;
         b++;
 
@@ -232,8 +232,8 @@ int personToString(struct person *startPerson, char *text){
         text[i] = ',';
         i++;
 
-        while(startPerson->number != '\0'){
-            text[i] = startPerson-number[k];
+        while(startPerson->number[k] != '\0'){
+            text[i] = startPerson->number[k];
             i++; k++;
         }
 
@@ -252,7 +252,7 @@ int personToString(struct person *startPerson, char *text){
         i++;
 
         if(startPerson->next !=  NULL){
-            startPerson = startPerson.next;
+            startPerson = startPerson->next;
         }
 
 
@@ -286,7 +286,7 @@ int tableToString(struct table *startTable, char *text){
         itoa(startTable->y, temp, 10);
 
         while(temp[k] != '\0'){
-            text[i] =  temp[k]
+            text[i] =  temp[k];
             i++; k++;
         }
         text[i] = ',';
@@ -311,7 +311,7 @@ int tableToString(struct table *startTable, char *text){
     return i;
 }
 
-int bookingToString(struct booking startBooking, char *text){
+int bookingToString(struct booking *startBooking, char *text){
     int i = 0;
     int k = 0;
     char temp[nameLength];
@@ -349,7 +349,7 @@ int bookingToString(struct booking startBooking, char *text){
         text[i] = ',';
         i++;
 
-        while(startBooking->enTime[k] != '\0'){
+        while(startBooking->endTime[k] != '\0'){
             text[i] = startBooking->endTime[k];
             i++; k++;
         }

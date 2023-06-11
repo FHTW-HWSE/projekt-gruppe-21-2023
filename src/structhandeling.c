@@ -33,7 +33,7 @@ struct booking *createBookingHead(){
 
 }
 
-void addPerson(struct person *old){
+void addPersonList(struct person *old){
     person *new = malloc(sizeof(person)); 
 
     if(new == NULL){
@@ -49,7 +49,7 @@ void addPerson(struct person *old){
     new->next = NULL;
 }
 
-void addTable(struct table *old){
+void addTableList(struct table *old){
     table *new = malloc(sizeof(table));
 
     if(new == NULL){
@@ -65,7 +65,7 @@ void addTable(struct table *old){
     new->next = NULL;
 }
 
-void addBooking(struct booking *old){
+void addBookingList(struct booking *old){
     booking *new = malloc(sizeof(booking));
 
     if(new == NULL){

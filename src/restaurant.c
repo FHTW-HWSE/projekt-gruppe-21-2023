@@ -2,50 +2,45 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "restaurant.h"
 
 #define nameLength 50
 #define telNumLen 25
 #define maxTables 10
 
 
-typedef struct table {
+/*typedef struct table {
     int x;
     int y;
     int id;
     struct table* next;
-} table;
+} table; */
 
-typedef struct person {
+/* typedef struct person {
     char name[nameLength];
     char number[telNumLen];
     int id;
     struct person* next;
-} person;
+} person; */
 
-struct Restaurant {
-    float length;
-    float width;
-    table* tables[maxTables];
-    int numTables;
-    person* people;
-};
+
 
 // displays size of restaurant
-void displayRestaurantSize(struct Restaurant restaurant) {
-    printf("Restaurant Size: Length=%.2f, Width=%.2f\n", restaurant.length, restaurant.width);
+void displayRestaurantSize(struct Restaurant *restaurant) {
+    printf("Restaurant Size: Length=%.2f, Width=%.2f\n", restaurant->length, restaurant->width);
 }
 
 // display tables in restaurant
-void displayTables(struct Restaurant restaurant) {
+void displayTables(struct Restaurant *restaurant) {
     printf("--- Tables ---\n");
-    for (int i = 0; i < restaurant.numTables; i++) {
-        printf("Table %d: X=%d, Y=%d, ID=%d\n", i + 1, restaurant.tables[i]->x, restaurant.tables[i]->y, restaurant.tables[i]->id);
+    for (int i = 0; i < restaurant->numTables; i++) {
+        printf("Table %d: X=%d, Y=%d, ID=%d\n", i + 1, restaurant->tables[i]->x, restaurant->tables[i]->y, restaurant->tables[i]->id);
     }
     printf("-------------\n");
 }
 
 // add table to restaurant
-int addTable(struct Restaurant* restaurant, int x, int y) {
+int addTable(struct Restaurant *restaurant, int x, int y) {
     // check if table already exists at provided coordinates
     for (int i = 0; i < restaurant->numTables; i++) {
         if (restaurant->tables[i]->x == x && restaurant->tables[i]->y == y) {
@@ -84,7 +79,7 @@ int addTable(struct Restaurant* restaurant, int x, int y) {
 }
 
 // remove table from restaurant
-int removeTable(struct Restaurant* restaurant, int tableNumber) {
+int removeTable(struct Restaurant *restaurant, int tableNumber) {
     if (tableNumber <= 0 || tableNumber > restaurant->numTables) {
         printf("Error: Invalid table number.\n");
         return 0;
@@ -145,7 +140,7 @@ int changePerson(struct Restaurant* restaurant, int personID, const char* newNam
 }
 
 // remove person from restaurant
-int removePerson(struct Restaurant* restaurant, int personID) {
+int removePerson(struct Restaurant *restaurant, int personID) {
     person* prev = NULL;
     person* current = restaurant->people;
 
@@ -167,9 +162,9 @@ int removePerson(struct Restaurant* restaurant, int personID) {
 }
 
 // display people in restaurant
-void displayPeople(struct Restaurant restaurant) {
+void displayPeople(struct Restaurant *restaurant) {
     printf("--- People ---\n");
-    person* current = restaurant.people;
+    person* current = restaurant->people;
     while (current != NULL) {
         printf("ID: %d, Name: %s, Number: %s\n", current->id, current->name, current->number);
         current = current->next;
@@ -178,7 +173,7 @@ void displayPeople(struct Restaurant restaurant) {
 }
 
 int main() {
-    struct Restaurant restaurant;
+    struct Restaurant *restaurant = malloc (sizeof(restaurant));
     float newLength, newWidth;
     int choice, tableNumber, personID;
     int tableX, tableY;
@@ -186,17 +181,17 @@ int main() {
     char personNumber[telNumLen];
 
     // initialize restaurant
-    restaurant.length = 0.0f;
-    restaurant.width = 0.0f;
-    restaurant.numTables = 0;
-    restaurant.people = NULL;
+    restaurant->length = 0.0f;
+    restaurant->width = 0.0f;
+    restaurant->numTables = 0;
+    restaurant->people = NULL;
 
     // prompt user to enter initial size of restaurant
     printf("Please enter the initial size of the restaurant in m:\n");
     printf("Length: ");
-    scanf("%f", &restaurant.length);
+    scanf("%f", &restaurant->length);
     printf("Width: ");
-    scanf("%f", &restaurant.width);
+    scanf("%f", &restaurant->width);
 
     // display initial size of restaurant
     displayRestaurantSize(restaurant);
@@ -220,7 +215,7 @@ int main() {
                 // remove table from restaurant
                 printf("Enter the table number to remove: ");
                 scanf("%d", &tableNumber);
-                removeTable(&restaurant, tableNumber);
+                removeTable(restaurant, tableNumber);
                 break;
             case 3:
                 // add person to restaurant
@@ -228,7 +223,7 @@ int main() {
                 scanf("%s", personName);
                 printf("Enter the person's phone number: ");
                 scanf("%s", personNumber);
-                addPerson(&restaurant, personName, personNumber);
+                addPerson(restaurant, personName, personNumber);
                 break;
             case 4:
                 // change person's information
@@ -238,7 +233,7 @@ int main() {
                 scanf("%s", personName);
                 printf("Enter the new phone number: ");
                 scanf("%s", personNumber);
-                if (changePerson(&restaurant, personID, personName, personNumber)) {
+                if (changePerson(restaurant, personID, personName, personNumber)) {
                     printf("Person information updated successfully.\n");
                 } else {
                     printf("Person not found.\n");
@@ -248,7 +243,7 @@ int main() {
                 // remove person from restaurant
                 printf("Enter the person's ID to remove: ");
                 scanf("%d", &personID);
-                if (removePerson(&restaurant, personID)) {
+                if (removePerson(restaurant, personID)) {
                     printf("Person removed successfully.\n");
                 } else {
                     printf("Person not found.\n");
