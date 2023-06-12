@@ -137,11 +137,17 @@ int main() {
     booking *headBooking = malloc(sizeof(booking));
     table *headTable = malloc(sizeof(booking));
 
+    table *tempTable = malloc(sizeof(table));
+    person *tempPerson = malloc(sizeof(person));
+    booking *tempBooking = malloc(sizeof(booking));
+
+    restaurant->people = headPerson;
 
 
     // menu loop
     do {
         printf("Menu:\n");
+        printf("1. Add table\n");
         printf("2. Remove table\n");
         printf("3. Add person\n");
         printf("4. Change person's information\n");
@@ -152,11 +158,36 @@ int main() {
         printf("9. Save data\n");
         printf("10. Start Contact-Tracing\n");
         printf("11. Load data from Files\n");
+        printf("12. Add Booking\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
         switch (choice) {
-            
+            case 1:
+                printf("Geben Sie eine y Koordinate an: \n ");
+                scanf("%d", &tableY);
+                printf("Geben Sie eine x Koordinate an: \n ");
+                scanf("%d", &tableX);
+                functionCheck = addTable(restaurant, tableX, tableY);
+
+                if(functionCheck == 1){
+                  addTableList(headTable);
+                  tempTable = headTable;
+
+                  do{
+                    if(tempTable->next == NULL){
+                      tempTable->x = tableX;
+                      tempTable->y = tableY;
+                    }
+                    else{
+                      tempTable = tempTable->next;
+                    }
+                  }
+                  while(tempTable->next != NULL);
+                }
+
+                break;
+
             case 2:
                 // remove table from restaurant
                 printf("Enter the table number to remove: ");
@@ -206,6 +237,7 @@ int main() {
             case 8:
                 // exit program
                 printf("Exiting...\n");
+                return 0;
                 break;
             case 9:
 
@@ -213,7 +245,7 @@ int main() {
                 printf("Parsed %d symbols from structs to String \n", functionCheck);
 
                 
-                printf("Please enter the filename with the path for persons: \n");
+                printf("Please enter the filename with including path for persons: \n");
                 scanf("%s", filename);
 
                 functionCheck = writeFile(filename, functionBuffer);
@@ -233,7 +265,7 @@ int main() {
                 printf("Parsed %d symbols from structs to String \n", functionCheck);
 
                 
-                printf("Please enter the filename with the path for tables: \n");
+                printf("Please enter the filename including the path for tables: \n");
                 scanf("%s", filename);
                 functionCheck = writeFile(filename, functionBuffer);
                 if(functionCheck == 0){
@@ -267,7 +299,10 @@ int main() {
                 break;               
 
             case 10:
+
+                //ToDo
                 break;
+
             case 11:
                 printf("Please enter the filename with the path for persons: \n");
                 scanf("%s", filename);
@@ -321,13 +356,42 @@ int main() {
 
                 break;
 
+            case 12:
+                printf("Bitte geben Sie die ID der Person und die ID des Tisches ein. \n");
+                printf("ID person:\n");
+                scanf("%d", &personID);
+                printf("ID table:\n");
+                scanf("%d", &tableNumber);
+                printf("Time:\n");
+
+                do{
+
+                  printf("1. Automatically + Offset\n");
+                  printf("2. Manual start and endtime\n");
+
+                  switch(choice){
+                    case 1:
+
+                      break;
+
+                    case 2:
+
+                      break;
+
+                
+                  }
+                }while(1);
+                break;
+
+
             default:
-                printf("Invalid choice. Please try again.\n");
+                printf("Invalid choice. Please try again. Choice %d\n", choice);
                 break;
         }
 
+
         printf("\n");
-    } while (choice != 8);
+    } while (1);
 
     return 0;
 }

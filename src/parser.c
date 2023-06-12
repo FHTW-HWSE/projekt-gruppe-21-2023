@@ -1,6 +1,6 @@
 // TODO Header ins Include File brinngen und aufräumen
-#include "parser.h"
-#include "structhandeling.h"
+#include "../include/structhandeling.h"
+#include "../include/parser.h"
 
 /*! fn getRows
     @brief Liest aus dem Sting die Daten und speichert diese in einem Struct
@@ -222,6 +222,9 @@ int personToString(struct person *startPerson, char *text){
     char temp[nameLength];
 
     do{
+        if(startPerson->next != NULL){
+            startPerson = startPerson->next;
+        }
         while(startPerson->name[k] != '\0'){
              text[i] = startPerson->name[k];
             i++; k++;
@@ -319,6 +322,7 @@ int bookingToString(struct booking *startBooking, char *text){
     char temp[nameLength];
 
     do{
+
         sprintf(temp, "%d" , startBooking->idPerson);
         //tostring(startBooking->idPerson, temp);
 

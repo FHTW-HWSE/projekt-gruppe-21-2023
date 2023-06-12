@@ -1,5 +1,5 @@
-src/parser.o: src/parser.c /usr/include/stdc-predef.h include/parser.h \
- /usr/include/stdio.h \
+src/parser.o: src/parser.c /usr/include/stdc-predef.h \
+ src/../include/structhandeling.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -52,9 +52,9 @@ src/parser.o: src/parser.c /usr/include/stdc-predef.h include/parser.h \
  /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
- include/structhandeling.h
+ src/../include/parser.h
 /usr/include/stdc-predef.h:
-include/parser.h:
+src/../include/structhandeling.h:
 /usr/include/stdio.h:
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 /usr/include/features.h:
@@ -114,4 +114,4 @@ include/parser.h:
 /usr/include/x86_64-linux-gnu/bits/time.h:
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
-include/structhandeling.h:
+src/../include/parser.h:
