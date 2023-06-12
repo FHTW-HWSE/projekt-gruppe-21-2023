@@ -11,13 +11,13 @@
     float length;
     float width;
 };*/
-struct Restaurant {
+typedef struct Restaurant {
     float length;
     float width;
     table* tables[MAX_TABLES];
     int numTables;
     person* people;
-};
+} restaurant;
 
 void displayRestaurantSize(struct Restaurant *restaurant);
 void displayTables(struct Restaurant *restaurant);
