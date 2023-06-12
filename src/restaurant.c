@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "restaurant.h"
+#include "../include/restaurant.h"
 
 #define nameLength 50
 #define telNumLen 25

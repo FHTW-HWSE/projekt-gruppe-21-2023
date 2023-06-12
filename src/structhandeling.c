@@ -1,5 +1,5 @@
-#include "parser.h"
-#include "structhandeling.h"
+#include "../include/parser.h"
+#include "../include/structhandeling.h"
 
 struct person *createPersonHead(){   
     person *new = malloc(sizeof(person));
