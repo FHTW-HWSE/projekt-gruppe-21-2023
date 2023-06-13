@@ -66,6 +66,8 @@ int addTable(struct Restaurant *restaurant, int x, int y) {
         return 0;
     }
 
+    printf("start adding new table to struct\n");
+
     table* newTable = (table*)malloc(sizeof(table));
     newTable->x = x;
     newTable->y = y;
@@ -74,7 +76,7 @@ int addTable(struct Restaurant *restaurant, int x, int y) {
 
     restaurant->tables[restaurant->numTables] = newTable;
     restaurant->numTables++;
-
+    printf("addTable return to Main\n");
     return 1;
 }
 

@@ -159,6 +159,7 @@ int main() {
         printf("10. Start Contact-Tracing\n");
         printf("11. Load data from Files\n");
         printf("12. Add Booking\n");
+        printf("13. Display Bookings\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
@@ -169,6 +170,8 @@ int main() {
                 printf("Geben Sie eine x Koordinate an: \n ");
                 scanf("%d", &tableX);
                 functionCheck = addTable(restaurant, tableX, tableY);
+
+                printf("Tshoot Segmentation fault\n");
 
                 if(functionCheck == 1){
                   addTableList(headTable);
@@ -201,6 +204,23 @@ int main() {
                 printf("Enter the person's phone number: ");
                 scanf("%s", personNumber);
                 addPerson(restaurant, personName, personNumber);
+
+
+                /*addPersonXY(headPerson);
+                tempPerson = headPerson;
+
+                  do{
+                    if(tempPerson->next == NULL){
+                      strncpy(tempPerson->name, personName, nameLength);
+                      strncpy(tempPerson->number, personNumber, telNumLen);
+                    }
+                    else{
+                      tempPerson = tempPerson->next;
+                    }
+                  }
+                  while(tempPerson->next != NULL);*/
+
+
                 break;
             case 4:
                 // change person's information
@@ -240,61 +260,36 @@ int main() {
                 return 0;
                 break;
             case 9:
+                printf("Please choose the data you want to save:\n");
+                printf("  1. Person data\n");
+                printf("  2. Table data\n");
+                printf("  3. Booking data\n");
+                printf("  4. All\n");
+                scanf("%d", &choice);
+                do{
+                switch(choice){
+                  case 1:
+                    savePerson(headPerson);
+                    break;
+                  case 2:
+                    saveTable(headTable);
+                    break;
+                  case 3:
+                    saveBooking(headBooking);
+                    break;
+                  case 4:
+                    savePerson(headPerson);
+                    saveTable(headTable);
+                    saveBooking(headBooking);
+                  default:
+                    printf("Error with the input please choose a valid option.\n");
+                    break;
 
-                functionCheck = personToString(headPerson, functionBuffer);
-                printf("Parsed %d symbols from structs to String \n", functionCheck);
-
-                
-                printf("Please enter the filename with including path for persons: \n");
-                scanf("%s", filename);
-
-                functionCheck = writeFile(filename, functionBuffer);
-                if(functionCheck == 0){
-                  printf("Person data saved\n");
                 }
-                else{
-                  printf("Error saving person data\n");
-                }
-
-                for(int q = 0; q < MAX_BUFFER; q++){
-                  functionBuffer[q] = '\0';
-                } 
+                }while(choice > 4);
 
 
-                functionCheck = tableToString(headTable, functionBuffer);
-                printf("Parsed %d symbols from structs to String \n", functionCheck);
 
-                
-                printf("Please enter the filename including the path for tables: \n");
-                scanf("%s", filename);
-                functionCheck = writeFile(filename, functionBuffer);
-                if(functionCheck == 0){
-                  printf("Table data saved\n");
-                }
-                else{
-                  printf("Error saving table data\n");
-                }
-
-                for(int q = 0; q < MAX_BUFFER; q++){
-                  functionBuffer[q] = '\0';
-                } 
-
-                functionCheck = bookingToString(headBooking, functionBuffer);
-
-                
-                printf("Please enter the filename with the path for booking: \n");
-                scanf("%s", filename);
-                functionCheck = writeFile(filename, functionBuffer);
-                if(functionCheck == 0){
-                  printf("Table data saved\n");
-                }
-                else{
-                  printf("Error saving booking data\n");
-                }
-
-                for(int q = 0; q < MAX_BUFFER; q++){
-                  functionBuffer[q] = '\0';
-                } 
 
                 break;               
 
@@ -304,56 +299,9 @@ int main() {
                 break;
 
             case 11:
-                printf("Please enter the filename with the path for persons: \n");
-                scanf("%s", filename);
-                functionCheck = readFile(filename, functionBuffer);
-                if(functionCheck == 0){
-                  printf("%d symbols were read.\n", functionCheck);
-                }
-                else{
-                  printf("Error reading from file \n");
-                }
-                functionCheck = parsePerson(functionBuffer, headPerson);
-
-                printf("%d structs person have been created\n", functionCheck);
-
-                for(int q = 0; q < MAX_BUFFER; q++){
-                  functionBuffer[q] = '\0';
-                } 
-
-                printf("Please enter the filename with the path for tables: \n");
-                scanf("%s", filename);
-                functionCheck = readFile(filename, functionBuffer);
-                if(functionCheck == 0){
-                  printf("%d symbols were read.\n", functionCheck);
-                }
-                else{
-                  printf("Error reading from file \n");
-                }
-                functionCheck = parseTable(functionBuffer, headTable);
-                printf("%d structs table have been created\n", functionCheck);
-
-                for(int q = 0; q < MAX_BUFFER; q++){
-                  functionBuffer[q] = '\0';
-                }
-
-
-                printf("Please enter the filename with the path for booking: \n");
-                scanf("%s", filename);
-                functionCheck = readFile(filename, functionBuffer);
-                if(functionCheck == 0){
-                  printf("%d symbols were read.\n", functionCheck);
-                }
-                else{
-                  printf("Error reading from file \n");
-                }
-                functionCheck = parseBooking(functionBuffer, headBooking);
-                printf("%d structs booking have been created\n", functionCheck);
-
-                for(int q = 0; q < MAX_BUFFER; q++){
-                  functionBuffer[q] = '\0';
-                }
-
+                loadPerson(headPerson);
+                loadTable(headTable);
+                loadBooking(headBooking);
                 break;
 
             case 12:
@@ -371,16 +319,19 @@ int main() {
 
                   switch(choice){
                     case 1:
-
                       break;
 
                     case 2:
 
                       break;
+                    default:
 
-                
+                      printf("Error with the input please choose a valid option.\n");
+                      break;
+                      
+
                   }
-                }while(1);
+                }while(choice > 2);
                 break;
 
 

@@ -107,3 +107,114 @@ int writeFile(char *filename, char *inputString){
     }
 
 }*/
+
+void loadPerson(struct person *headPerson){
+    int functionCheck;
+    char filename [MAX_BUFFER];
+    char functionBuffer[MAX_BUFFER];
+    printf("Please enter the filename with the path for persons: \n");
+    scanf("%s", filename);
+    functionCheck = readFile(filename, functionBuffer);
+    if(functionCheck == 0){
+        printf("%d symbols were read.\n", functionCheck);
+    }
+    else{
+        printf("Error reading from file \n");
+    }
+    functionCheck = parsePerson(functionBuffer, headPerson);
+
+    printf("%d structs person have been created\n", functionCheck);
+
+}
+
+void loadTable(struct table *headTable){
+    int functionCheck;
+    char filename [MAX_BUFFER];
+    char functionBuffer[MAX_BUFFER];
+    printf("Please enter the filename with the path for tables: \n");
+    scanf("%s", filename);
+    functionCheck = readFile(filename, functionBuffer);
+    if(functionCheck == 0){
+        printf("%d symbols were read.\n", functionCheck);
+    }
+    else{
+        printf("Error reading from file \n");
+    }
+    functionCheck = parseTable(functionBuffer, headTable);
+    printf("%d structs table have been created\n", functionCheck);
+}
+
+void loadBooking(struct booking *headBooking){
+    int functionCheck;
+    char filename [MAX_BUFFER];
+    char functionBuffer[MAX_BUFFER];
+    printf("Please enter the filename with the path for tables: \n");
+    scanf("%s", filename);
+    functionCheck = readFile(filename, functionBuffer);
+    if(functionCheck == 0){
+        printf("%d symbols were read.\n", functionCheck);
+    }
+    else{
+        printf("Error reading from file \n");
+    }
+    functionCheck = parseBooking(functionBuffer, headBooking);
+    printf("%d structs table have been created\n", functionCheck);
+}
+
+void savePerson(struct person *headPerson){
+    int functionCheck;
+    char filename [MAX_BUFFER];
+    char functionBuffer[MAX_BUFFER];
+    functionCheck = personToString(headPerson, functionBuffer);
+    printf("Parsed %d symbols from structs to String \n", functionCheck);
+
+    
+    printf("Please enter the filename with including path for persons: \n");
+    scanf("%s", filename);
+
+    functionCheck = writeFile(filename, functionBuffer);
+    if(functionCheck == 0){
+      printf("Person data saved\n");
+    }
+    else{
+      printf("Error saving person data\n");
+    }
+}
+
+void saveTable(struct table *headTable){
+    int functionCheck;
+    char filename [MAX_BUFFER];
+    char functionBuffer[MAX_BUFFER];
+    functionCheck = tableToString(headTable, functionBuffer);
+    printf("Parsed %d symbols from structs to String \n", functionCheck);
+
+    
+    printf("Please enter the filename including the path for tables: \n");
+    scanf("%s", filename);
+    functionCheck = writeFile(filename, functionBuffer);
+    if(functionCheck == 0){
+      printf("Table data saved\n");
+    }
+    else{
+      printf("Error saving table data\n");
+    }
+}
+
+void saveBooking(struct booking *headBooking){
+    int functionCheck;
+    char filename [MAX_BUFFER];
+    char functionBuffer[MAX_BUFFER];
+    
+    functionCheck = bookingToString(headBooking, functionBuffer);
+
+                
+    printf("Please enter the filename with the path for booking: \n");
+    scanf("%s", filename);
+    functionCheck = writeFile(filename, functionBuffer);
+    if(functionCheck == 0){
+        printf("Table data saved\n");
+    }
+    else{
+        printf("Error saving booking data\n");
+    }
+}

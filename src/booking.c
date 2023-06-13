@@ -68,8 +68,7 @@ typedef struct booking {
     return 0;
 } */
 
-int addBooking(booking* booking)
-{
+int addBooking(booking* booking){
  int num_bookings = 0;
     struct booking* bookings = NULL;
 

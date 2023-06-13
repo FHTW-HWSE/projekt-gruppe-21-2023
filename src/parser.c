@@ -274,7 +274,8 @@ int tableToString(struct table *startTable, char *text){
     int k = 0;
     char temp[nameLength];
 
-    do{
+    //do{
+    while(startTable){
         //tostring(, temp);
         sprintf(temp, "%d" , startTable->x);
         while(temp[k] != '\0'){
@@ -307,12 +308,9 @@ int tableToString(struct table *startTable, char *text){
         text[i] = 10;
         i++;
 
-        if(startTable->next != NULL){
-            startTable = startTable->next;
-
-        }
-
-    }while (startTable->next != NULL);
+        startTable = startTable->next;
+    }
+    //}while (startTable->next != NULL);
     return i;
 }
 
