@@ -114,10 +114,9 @@ void loadPerson(struct person *headPerson){
     printf("Please enter the filename with the path for persons: \n");
     scanf("%s", filename);
     functionCheck = readFile(filename, functionBuffer);
-    if(functionCheck == 0){
+    if(functionCheck > 0){
         printf("%d symbols were read.\n", functionCheck);
-    }
-    else{
+    } else{
         printf("Error reading from file \n");
         return;
     }

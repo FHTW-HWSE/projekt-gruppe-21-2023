@@ -4,9 +4,6 @@
 #include <string.h>
 #include "../include/restaurant.h"
 
-#define nameLength 50
-#define telNumLen 25
-#define maxTables 10
 
 
 /*typedef struct table {
