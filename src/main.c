@@ -6,6 +6,8 @@
 #include "../include/booking.h"
 #include "../include/contacTracing.h"
 
+int idTable = 0;
+int idPerson = 0;
 /*
 Tisch
     x
@@ -177,7 +179,7 @@ int main() {
         while ((c = getchar()) != '\n' && c != EOF);
 
         continue;
-    }
+        }
         
 
         switch (choice) {
@@ -236,6 +238,8 @@ int main() {
                   fillPersonHead(headPerson, personName, personNumber);
                   flagPerson = 1;
                   restaurant->people = headPerson;
+                  printf("Pointer to headPerson: %d", headPerson);
+                  printf("Pointer to restaurant->people: %d", restaurant->people);
                 }
                 else{
                   addPerson(restaurant, personName, personNumber);
@@ -341,9 +345,35 @@ int main() {
                 break;
 
             case 11:
-                loadPerson(headPerson);
-                loadTable(headTable);
-                loadBooking(headBooking);
+                printf("Please choose the data you want to save:\n");
+                printf("  1. Person data\n");
+                printf("  2. Table data\n");
+                printf("  3. Booking data\n");
+                printf("  4. All\n");
+                scanf("%d", &choice);
+
+                //do{
+                switch(choice){
+                  case 1:
+                    loadPerson(headPerson);
+                    break;
+                  case 2:
+                    loadTable(headTable);
+                    break;
+                  case 3:
+                    loadBooking(headBooking);
+                    break;
+                  case 4:
+                    loadPerson(headPerson);
+                    loadTable(headTable);
+                    loadBooking(headBooking);
+                    break;
+                  default:
+                    printf("Error with the input please choose a valid option.\n");
+                    break;
+
+                }
+                //} while(choice > 4);
                 break;
 
             case 12:
@@ -356,7 +386,7 @@ int main() {
 
                 do{
 
-                  printf("1. Automatically + 2h offset\n");
+                  printf("1. Starttime = current, endtime = current + 2h \n");
                   printf("2. Manual start and endtime\n");
                   scanf("%d", &choice);
                   

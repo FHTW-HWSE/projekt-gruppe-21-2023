@@ -6,6 +6,7 @@
 #define nameLength 50
 #define telNumLen 25
 
+
 typedef struct 
 {
     char name[nameLength];

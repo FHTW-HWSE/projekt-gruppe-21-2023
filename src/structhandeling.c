@@ -100,7 +100,7 @@ void addBookingData(struct booking *bookingHead, int idPerson, int idTable, char
     new->idPerson = idPerson;
     new->idTable = idTable;
     strncpy(new->startTime, starttime, timeLength);
-    strncpy(new->startTime, endtime, timeLength);
+    strncpy(new->endTime, endtime, timeLength);
 }
 
 
@@ -157,6 +157,7 @@ void fillPersonHead(struct person *headPerson, const char* name, const char* num
     strncpy(headPerson->number, number, telNumLen);
     headPerson->id = 0;
     headPerson->next = NULL;
+    printf("FillPersonHead Pointer -> %d\n", headPerson);
 }
 
 void fillTableHead(struct table *headTable, int x, int y){

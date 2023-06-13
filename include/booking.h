@@ -9,6 +9,7 @@
 #define timeLength 18
 #define telNumLen 25
 
+
 /*typedef struct booking {
     int idPerson;
     int idTable;

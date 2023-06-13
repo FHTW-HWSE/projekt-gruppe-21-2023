@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "structhandeling.h"
 
-#define MAX_TABLES 100
+#define MAX_TABLES 90
 /*struct Table 
 {
     int tableNumber;
@@ -18,6 +18,7 @@ typedef struct Restaurant {
     int numTables;
     person* people;
 } restaurant;
+
 
 void displayRestaurantSize(struct Restaurant *restaurant);
 void displayTables(struct Restaurant *restaurant);

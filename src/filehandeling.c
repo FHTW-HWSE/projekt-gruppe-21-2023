@@ -50,8 +50,7 @@ int readFile(char *filename, char *text) {
 
     file = fopen(filename, "r");
 
-    if (file == NULL)
-    {
+    if (file == NULL){
         return -1;
     }
 
@@ -120,6 +119,7 @@ void loadPerson(struct person *headPerson){
     }
     else{
         printf("Error reading from file \n");
+        return;
     }
     functionCheck = parsePerson(functionBuffer, headPerson);
 
@@ -139,6 +139,7 @@ void loadTable(struct table *headTable){
     }
     else{
         printf("Error reading from file \n");
+        return;
     }
     functionCheck = parseTable(functionBuffer, headTable);
     printf("%d structs table have been created\n", functionCheck);
@@ -204,7 +205,7 @@ void saveBooking(struct booking *headBooking){
     int functionCheck;
     char filename [MAX_BUFFER];
     char functionBuffer[MAX_BUFFER];
-    
+
     functionCheck = bookingToString(headBooking, functionBuffer);
 
                 

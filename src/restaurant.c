@@ -71,7 +71,9 @@ int addTable(struct Restaurant *restaurant, int x, int y) {
     table* newTable = (table*)malloc(sizeof(table));
     newTable->x = x;
     newTable->y = y;
-    newTable->id = restaurant->numTables + 1;
+    idTable++;
+    //newTable->id = restaurant->numTables + 1;
+    newTable->id = idTable;
     newTable->next = NULL;
 
     restaurant->tables[restaurant->numTables] = newTable;
@@ -113,7 +115,9 @@ void addPerson(struct Restaurant* restaurant, const char* name, const char* numb
     person* newPerson = (person*)malloc(sizeof(person));
     strncpy(newPerson->name, name, nameLength);
     strncpy(newPerson->number, number, telNumLen);
-    newPerson->id = restaurant->numTables + 1;
+    idPerson++;
+    //newPerson->id = restaurant->numTables + 1;
+    newPerson->id = idPerson;
     newPerson->next = NULL;
 
     if (restaurant->people == NULL) {
@@ -125,6 +129,7 @@ void addPerson(struct Restaurant* restaurant, const char* name, const char* numb
         }
         current->next = newPerson;
     }
+    printf("Pointer to new person %d\n", newPerson);
 }
 
 // change person's information
@@ -166,8 +171,9 @@ int removePerson(struct Restaurant *restaurant, int personID) {
 // display people in restaurant
 void displayPeople(struct Restaurant *restaurant) {
     printf("--- People ---\n");
-    person* current = restaurant->people;
+    struct person *current = restaurant->people;
     while (current) {
+        printf("Pointer to person: %d\n", current);
         printf("ID: %d, Name: %s, Number: %s\n", current->id, current->name, current->number);
         current = current->next;
     }
@@ -187,7 +193,7 @@ void displayBookingsID(struct booking *headBooking) {
     printf("--------------\n");
 }
 
-void displayBookingsName(struct booking *headBooking, struct person *headPerson, struct table *headTable) {
+/*void displayBookingsName(struct booking *headBooking, struct person *headPerson, struct table *headTable) {
     printf("--- Bookings ---\n");
     struct person *tmpPerson;
     struct table *tmpTable;
@@ -210,4 +216,4 @@ void displayBookingsName(struct booking *headBooking, struct person *headPerson,
     }
     printf("--------------\n");
 }
-
+*/

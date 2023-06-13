@@ -9,7 +9,7 @@
 #define nameLength 50
 #define timeLength 18
 #define telNumLen  25
-#define MAX_BUFFER 2000
+#define MAX_BUFFER 1000
 
 typedef struct person {
     char name [nameLength];   
@@ -35,7 +35,8 @@ typedef struct booking {
     struct booking *next;
 } booking;
 
-
+extern int idTable;
+extern int idPerson;
 
 
 void addPersonList(struct person *old);
