@@ -54,7 +54,8 @@ src/main.o: src/main.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
  src/../include/parser.h src/../include/filehandeling.h \
- src/../include/contact.h src/../include/booking.h
+ src/../include/contact.h src/../include/booking.h \
+ src/../include/contacTracing.h
 /usr/include/stdc-predef.h:
 src/../include/restaurant.h:
 /usr/include/stdio.h:
@@ -121,3 +122,4 @@ src/../include/parser.h:
 src/../include/filehandeling.h:
 src/../include/contact.h:
 src/../include/booking.h:
+src/../include/contacTracing.h:

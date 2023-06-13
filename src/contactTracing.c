@@ -6,18 +6,17 @@
 
 //Braucht den Anfang der Liste von Buchungen und eine Person die Gefunden werden muss
 //Kann man vielleicht optimieren in dem man die ID der Persion verwendet. Ist im Grunde gleich
-struct booking *findBookingfromPerson(struct booking *startBooking, struct person *toFind){ //Da ist der Fall von mehreren Buchungen nicht ausgeschlossen
-                                                                                            //Müssert man mit einem Array an Structs machen
+struct booking *findBookingfromPersonID(struct booking *startBooking, int personID){ //Da ist der Fall von mehreren Buchungen nicht ausgeschlossen
+                  
+    struct booking *current = startBooking; 
     do{
-        if(toFind->id == startBooking->idPerson){
-            return startBooking;
+        if(personID == current->idPerson){
+            return current;
         }
 
-        if(startBooking->next != NULL){
-            startBooking = startBooking->next;
-        }
+    current = current->next;
 
-    } while(startBooking->next != NULL);
+    } while(current);
     return NULL;
 }
 
@@ -60,6 +59,51 @@ int *findContact(int distance, int *returnArray, struct booking *startBooking, s
     }
 
     return returnArray; //liefert die Ids der betroffenen Personen zurück
+}   
+
+void traceContact(int distance, struct booking *startBooking, struct table *startTable, int personID){
+    struct table *tempTableToComp1;
+    struct table *tempTableToComp2;
+    int i = 0;
+
+    struct booking *currentBooking = startBooking;
+    struct table *currentTable = startTable;
+
+    struct booking *findContact;
+
+    findContact  = findBookingfromPersonID(startBooking, personID);
+
+    while(currentBooking){
+        
+        if(strcmp(findContact->startTime, startBooking->endTime) > 0 || strcmp(findContact->endTime, startBooking->startTime) < 0) {
+            //Wenn jemand gegangen ist bevor ein anderer gekommen ist und wenn jemand gekommen ist nachdem jemand anderer gegangen ist können sie keinen Kontakt haben.
+            //Alle andere sind betroffen
+            if(findContact->idPerson != startBooking->idPerson){
+                //Falls eine Person zwei Tische nebeneinander gebucht hat
+            
+                while(currentTable){
+                    if(currentTable->id == findContact->idTable){
+                        tempTableToComp1 = currentTable;
+                        //Tisch der Person von dem wir das Contact Tracing starten
+
+                    }
+                    
+                    if(currentTable->id == currentBooking->idTable){
+                        tempTableToComp2 = currentTable;
+                        //Tisch der Person die potentiel Kontakt hatte
+                    }
+                    if(betrag(tempTableToComp1->x - tempTableToComp2->x + tempTableToComp1->x - tempTableToComp2->x) <= distance){
+                        printf("Person Id: %d had contact between %s and %s on table id: %d", currentBooking->idPerson, currentBooking->startTime, currentBooking->endTime, currentBooking->idTable);
+                        i++;                    
+                    }
+                    currentTable = currentTable->next;
+                }
+            }
+        }
+
+
+        currentBooking = currentBooking->next;
+    }
 }   
 
 

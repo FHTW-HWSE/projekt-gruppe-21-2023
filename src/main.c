@@ -4,6 +4,7 @@
 #include "../include/filehandeling.h"
 #include "../include/contact.h"
 #include "../include/booking.h"
+#include "../include/contacTracing.h"
 
 /*
 Tisch
@@ -328,6 +329,12 @@ int main() {
                 break;               
 
             case 10:
+                printf("Please enter the person Id you want to trace: \n");
+                scanf("%d", &personID);
+                printf("Please enter the distance to search: \n");
+                int distance = 0;
+                scanf("%d", &distance);
+                traceContact(distance, headBooking, headTable, personID);
 
                 //ToDo
                 break;
