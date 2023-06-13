@@ -183,6 +183,7 @@ int main() {
                 scanf("%d", &tableX);
                 functionCheck = addTable(restaurant, tableX, tableY);
 
+                /*
                 printf("Tshoot Segmentation fault\n");
 
                 if(functionCheck == 1){
@@ -200,6 +201,7 @@ int main() {
                   }
                   while(tempTable->next != NULL);
                 }
+                */
 
                 break;
 
