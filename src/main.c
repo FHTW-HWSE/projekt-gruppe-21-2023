@@ -112,6 +112,9 @@ int main() {
     char personName[nameLength];
     char personNumber[telNumLen];
 
+    char timeBufferStart[timeLength];
+    char timeBufferEnd[timeLength];
+    int tempTimeInt;
     char functionBuffer[MAX_BUFFER];
     int functionCheck;
     char filename[nameLength];
@@ -290,6 +293,7 @@ int main() {
                     savePerson(headPerson);
                     saveTable(headTable);
                     saveBooking(headBooking);
+                    break;
                   default:
                     printf("Error with the input please choose a valid option.\n");
                     break;
@@ -323,14 +327,27 @@ int main() {
 
                 do{
 
-                  printf("1. Automatically + Offset\n");
+                  printf("1. Automatically + 2h offset\n");
                   printf("2. Manual start and endtime\n");
+                  scanf("%d", &choice);
+                  
 
                   switch(choice){
                     case 1:
+                      toDate(timeBufferStart);
+                      toDateOffset2(timeBufferEnd);
+
+                      printf("Startime: %s\n", timeBufferStart);
+                      printf("Endtime: %s\n", timeBufferEnd);
+                      addBookingData(headBooking, personID, tableNumber, timeBufferStart, timeBufferEnd);
                       break;
 
                     case 2:
+                      //ToDo -> errorhandeling was passiert wenn falsche Zeit... oder input String zu lange
+                      printf("Please enter the start and then the endtime: \n");
+                      scanf("%s", timeBufferStart);
+                      scanf("%s", timeBufferEnd);
+                      addBookingData(headBooking, personID, tableNumber, timeBufferStart, timeBufferEnd);
 
                       break;
                     default:

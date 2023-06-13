@@ -7,7 +7,7 @@
 #include <string.h>
 
 #define nameLength 50
-#define timeLength 17
+#define timeLength 18
 #define telNumLen  25
 #define MAX_BUFFER 2000
 
@@ -44,3 +44,4 @@ void addBookingList(struct booking *old);
 void cleanPerson(struct person *toClean);
 void cleanTable(struct table *toClean);
 void cleanBooking(struct booking *toClean);
+void addBookingData(struct booking *bookingHead, int idPerson, int idTable, char *starttime, char *endtime);

@@ -81,6 +81,27 @@ void addBookingList(struct booking *old){
     new->next = NULL;
 }
 
+void addBookingData(struct booking *bookingHead, int idPerson, int idTable, char *starttime, char *endtime){
+    booking *new = malloc(sizeof(booking));
+
+    if(new == NULL){
+        printf("Error creating booking struct");
+        return;
+    }
+        new = bookingHead;
+
+    while(new->next != NULL){
+        new = new->next;
+    }
+    bookingHead->next = new;
+    new->next = NULL;
+
+    new->idPerson = idPerson;
+    new->idTable = idTable;
+    strncpy(new->startTime, starttime, timeLength);
+    strncpy(new->startTime, endtime, timeLength);
+}
+
 void cleanPerson(struct person *toClean){
     struct person *temp;
     temp = toClean;
@@ -117,3 +138,4 @@ void cleanBooking(struct booking *toClean){
     }
     free(temp);
 }
+

@@ -6,7 +6,7 @@
 #include "structhandeling.h"
 
 #define nameLength 50
-#define timeLength 17
+#define timeLength 18
 #define telNumLen 25
 
 /*typedef struct booking {

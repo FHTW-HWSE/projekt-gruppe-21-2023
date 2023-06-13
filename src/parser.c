@@ -8,7 +8,7 @@
     @return Anzahl der erstellten Personen
 */
 
-char *toDate(char *date){
+void toDate(char *date){
     time_t now = time(NULL);
     struct tm tm = *localtime(&now);    
     int tmp, tmp1, tmp2, tmp3 ,tmp4;
@@ -25,6 +25,8 @@ char *toDate(char *date){
     date[2] = tmp3 + '0';
     date[3] = tmp4 + '0';
     
+
+    /*
     date[5] = ':';
     
     date[6] = (tm.tm_mon + 1) / 10 + '0';
@@ -44,8 +46,84 @@ char *toDate(char *date){
 
     date[15] = tm.tm_min / 10;
     date[16] = tm.tm_min % 10;
+    date[17] = '\0';
+    */
 
-    return date;
+    date[4] = (tm.tm_mon + 1) / 10 + '0';
+    date[5] = (tm.tm_mon + 1) % 10 + '0';
+    date[6] = tm.tm_mday / 10 + '0';
+    date[7] = tm.tm_mday % 10 + '0'; 
+    date[8] = tm.tm_hour / 10 + '0';
+    date[9] = tm.tm_hour % 10 + '0';
+    date[10] = tm.tm_min / 10;
+    date[11] = tm.tm_min % 10;
+    date[12] = '\0';
+    printf("%s\n",date);
+}
+
+
+void toDateOffset2(char *date){
+
+    time_t now = time(NULL);
+    struct tm tm = *localtime(&now);    
+    int tmp, tmp1, tmp2, tmp3 ,tmp4;
+    
+    int tmpOffset1, tmpOffset2, tmpOffset3;
+
+    tmp = tm.tm_year + 1900;
+    tmp1 = tmp / 1000;
+    tmp2 = (tmp - tmp1 * 1000) / 100;
+    tmp3 = (tmp - tmp1 * 1000 - tmp2 * 100) / 10;
+    tmp4 = (tmp - tmp1 * 1000 - tmp2 * 100 - tmp3 * 10);
+
+    date[0] = tmp1 + '0';
+    date[1] = tmp2 + '0';
+    date[2] = tmp3 + '0';
+    date[3] = tmp4 + '0';
+    
+    date[5] = ':';
+    
+    date[6] = (tm.tm_mon + 1) / 10 + '0';
+    date[7] = (tm.tm_mon + 1) % 10 + '0';
+
+    date[8] = ':';
+
+                   /* tempTimeInt = atoi(timeBufferStart);
+                      printf("toDate: %s\n", timeBufferStart);
+                      //Pfusch, hoffentlich passt die Logik
+                      if(timeBufferStart[13] > 1 && timeBufferStart[12] == 2){
+                          tempTimeInt =  tempTimeInt + 7800;
+                      } 
+                      else{
+                        tempTimeInt = tempTimeInt + 200; 
+                      }*/
+
+
+    tmpOffset1 = tm.tm_mday % 10 + '0';
+    tmpOffset2 = tm.tm_hour / 10 + '0';
+    tmpOffset3 = tm.tm_hour % 10 + '0';
+
+    if(tmpOffset3 > 1 && tmpOffset2 == 2){
+        tmpOffset1++;
+        tmpOffset2 = 0;
+        tmpOffset3 = (tmpOffset3 + 2) % 10;
+    }
+
+
+
+    date[9] = tm.tm_mday / 10 + '0';
+    date[10] = tmpOffset1;
+
+    date[11] = ':';
+     
+    date[12] = tmpOffset2;
+    date[13] = tmpOffset3;
+
+    date[14] = ':';
+
+    date[15] = tm.tm_min / 10;
+    date[16] = tm.tm_min % 10;
+    date[17] = '\0';
 }
 
 int parsePerson(char *text, struct person *toPerson) {
@@ -221,10 +299,9 @@ int personToString(struct person *startPerson, char *text){
     int k = 0;
     char temp[nameLength];
 
-    do{
-        if(startPerson->next != NULL){
-            startPerson = startPerson->next;
-        }
+    //do{
+    while(startPerson){
+
         while(startPerson->name[k] != '\0'){
              text[i] = startPerson->name[k];
             i++; k++;
@@ -253,12 +330,12 @@ int personToString(struct person *startPerson, char *text){
         text[i] = 10;  //10 ist Ascii für Linefeed -> Zeilenumbruch
         i++;
 
-        if(startPerson->next !=  NULL){
+        //if(startPerson->next !=  NULL){
             startPerson = startPerson->next;
-        }
+        //}
 
-
-    }while(startPerson->next != NULL);
+    }
+//    }while(startPerson->next != NULL);
 
     return i;
 }
