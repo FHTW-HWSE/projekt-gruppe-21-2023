@@ -161,7 +161,16 @@ int main() {
         printf("12. Add Booking\n");
         printf("13. Display Bookings\n");
         printf("Enter your choice: ");
-        scanf("%d", &choice);
+        
+        if (scanf("%d", &choice) != 1) {
+        printf("Invalid input. Please enter an integer.\n");
+
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);
+
+        continue;
+    }
+        
 
         switch (choice) {
             case 1:
