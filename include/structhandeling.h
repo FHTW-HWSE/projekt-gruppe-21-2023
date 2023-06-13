@@ -45,3 +45,6 @@ void cleanPerson(struct person *toClean);
 void cleanTable(struct table *toClean);
 void cleanBooking(struct booking *toClean);
 void addBookingData(struct booking *bookingHead, int idPerson, int idTable, char *starttime, char *endtime);
+void fillBookingHead(struct booking *bookingHead, int idPerson, int idTable, char *starttime, char *endtime);
+void fillPersonHead(struct person *headPerson, const char* name, const char* number);
+void fillTableHead(struct table *headTable, int x, int y);

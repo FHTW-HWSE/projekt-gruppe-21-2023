@@ -118,6 +118,9 @@ int main() {
     char functionBuffer[MAX_BUFFER];
     int functionCheck;
     char filename[nameLength];
+    int flagTable = 0;
+    int flagPerson = 0;
+    int flagBooking = 0;
 
     // initialize restaurant
     restaurant->length = 0.0f;
@@ -183,25 +186,33 @@ int main() {
                 scanf("%d", &tableX);
                 functionCheck = addTable(restaurant, tableX, tableY);
 
-                /*
+                
                 printf("Tshoot Segmentation fault\n");
 
                 if(functionCheck == 1){
-                  addTableList(headTable);
-                  tempTable = headTable;
 
-                  do{
-                    if(tempTable->next == NULL){
-                      tempTable->x = tableX;
-                      tempTable->y = tableY;
+                  if(flagTable == 0){
+                    fillTableHead(headTable, tableX, tableY);
+                    restaurant->tables[0] = headTable;
+                    flagTable = 1;
+
+                  } else {
+                    addTableList(headTable);
+                    tempTable = headTable;
+
+                    do{
+                     if(tempTable->next == NULL){
+                       tempTable->x = tableX;
+                       tempTable->y = tableY;
+                     }
+                     else{
+                       tempTable = tempTable->next;
+                     }
                     }
-                    else{
-                      tempTable = tempTable->next;
-                    }
+                    while(tempTable->next != NULL);
                   }
-                  while(tempTable->next != NULL);
                 }
-                */
+                
 
                 break;
 
@@ -217,8 +228,16 @@ int main() {
                 scanf("%s", personName);
                 printf("Enter the person's phone number: ");
                 scanf("%s", personNumber);
-                addPerson(restaurant, personName, personNumber);
+                
 
+                if(flagPerson == 0){
+                  fillPersonHead(headPerson, personName, personNumber);
+                  flagPerson = 1;
+                  restaurant->people = headPerson;
+                }
+                else{
+                  addPerson(restaurant, personName, personNumber);
+                }
 
                 /*addPersonXY(headPerson);
                 tempPerson = headPerson;
@@ -301,7 +320,7 @@ int main() {
                     break;
 
                 }
-                }while(choice > 4);
+                } while(choice > 4);
 
 
 
@@ -320,7 +339,7 @@ int main() {
                 break;
 
             case 12:
-                printf("Bitte geben Sie die ID der Person und die ID des Tisches ein. \n");
+                printf("Please enter the person and table Ids \n");
                 printf("ID person:\n");
                 scanf("%d", &personID);
                 printf("ID table:\n");
@@ -341,7 +360,12 @@ int main() {
 
                       printf("Startime: %s\n", timeBufferStart);
                       printf("Endtime: %s\n", timeBufferEnd);
-                      addBookingData(headBooking, personID, tableNumber, timeBufferStart, timeBufferEnd);
+                      if(flagBooking == 0){
+                        fillBookingHead(headBooking, personID, tableNumber, timeBufferStart, timeBufferEnd);
+                        flagBooking = 1;
+                      } else {
+                        addBookingData(headBooking, personID, tableNumber, timeBufferStart, timeBufferEnd);
+                      }
                       break;
 
                     case 2:
@@ -349,7 +373,12 @@ int main() {
                       printf("Please enter the start and then the endtime: \n");
                       scanf("%s", timeBufferStart);
                       scanf("%s", timeBufferEnd);
-                      addBookingData(headBooking, personID, tableNumber, timeBufferStart, timeBufferEnd);
+                      if(flagBooking == 0){
+                        fillBookingHead(headBooking, personID, tableNumber, timeBufferStart, timeBufferEnd);
+                        flagBooking = 1;
+                      } else {
+                        addBookingData(headBooking, personID, tableNumber, timeBufferStart, timeBufferEnd);
+                      }
 
                       break;
                     default:
@@ -361,6 +390,11 @@ int main() {
                   }
                 }while(choice > 2);
                 break;
+
+                case 13:
+                  displayBookingsID(headBooking);
+                  //displayBookingsName(headBooking, headPerson, headTable);
+                  break;
 
 
             default:

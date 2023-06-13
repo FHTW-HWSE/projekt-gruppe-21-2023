@@ -167,9 +167,46 @@ int removePerson(struct Restaurant *restaurant, int personID) {
 void displayPeople(struct Restaurant *restaurant) {
     printf("--- People ---\n");
     person* current = restaurant->people;
-    while (current != NULL) {
+    while (current) {
         printf("ID: %d, Name: %s, Number: %s\n", current->id, current->name, current->number);
         current = current->next;
+    }
+    printf("--------------\n");
+}
+
+void displayBookingsID(struct booking *headBooking) {
+    printf("--- Bookings ---\n");
+
+    struct booking *current;
+    current = headBooking;
+
+    while(current) {
+        printf("IDPerson: %d, IDTable: %d, Starttime: %s, Endtime: %s\n", current->idPerson, current->idTable, current->startTime, current->endTime);
+        current = current->next;
+    }
+    printf("--------------\n");
+}
+
+void displayBookingsName(struct booking *headBooking, struct person *headPerson, struct table *headTable) {
+    printf("--- Bookings ---\n");
+    struct person *tmpPerson;
+    struct table *tmpTable;
+
+    tmpPerson = headPerson;
+    tmpTable = headTable;
+
+    while (headBooking) {
+        tmpPerson = headPerson;
+        tmpTable = headTable;
+        while(tmpPerson->id != headBooking->idPerson && tmpPerson->next != NULL){           
+            tmpPerson = tmpPerson->next;
+        }
+        while(tmpTable->id != headBooking->idTable && tmpTable->next != NULL){
+            tmpTable = tmpTable->next;
+        }
+
+        printf("Person Name: %s, Table X: %d, Table Y, %d, Starttime: %s, Endtime: %s\n", tmpPerson->name, tmpTable->x, tmpTable->y, headBooking->startTime, headBooking->endTime);
+        headBooking = headBooking->next;
     }
     printf("--------------\n");
 }

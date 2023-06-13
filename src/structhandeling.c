@@ -88,7 +88,7 @@ void addBookingData(struct booking *bookingHead, int idPerson, int idTable, char
         printf("Error creating booking struct");
         return;
     }
-        new = bookingHead;
+    new = bookingHead;
 
     while(new->next != NULL){
         new = new->next;
@@ -101,6 +101,8 @@ void addBookingData(struct booking *bookingHead, int idPerson, int idTable, char
     strncpy(new->startTime, starttime, timeLength);
     strncpy(new->startTime, endtime, timeLength);
 }
+
+
 
 void cleanPerson(struct person *toClean){
     struct person *temp;
@@ -139,3 +141,25 @@ void cleanBooking(struct booking *toClean){
     free(temp);
 }
 
+
+void fillBookingHead(struct booking *bookingHead, int idPerson, int idTable, char *starttime, char *endtime){
+    bookingHead->next = NULL;
+    bookingHead->idPerson = idPerson;
+    bookingHead->idTable = idTable;
+    strncpy(bookingHead->startTime, starttime, timeLength);
+    strncpy(bookingHead->endTime, endtime, timeLength);
+}
+
+void fillPersonHead(struct person *headPerson, const char* name, const char* number) {
+
+    strncpy(headPerson->name, name, nameLength);
+    strncpy(headPerson->number, number, telNumLen);
+    headPerson->id = 0;
+    headPerson->next = NULL;
+}
+
+void fillTableHead(struct table *headTable, int x, int y){
+    headTable->next = NULL;
+    headTable->x = x;
+    headTable->y = y;
+}

@@ -55,15 +55,15 @@ void toDate(char *date){
     date[7] = tm.tm_mday % 10 + '0'; 
     date[8] = tm.tm_hour / 10 + '0';
     date[9] = tm.tm_hour % 10 + '0';
-    date[10] = tm.tm_min / 10;
-    date[11] = tm.tm_min % 10;
+    date[10] = tm.tm_min / 10 + '0';
+    date[11] = tm.tm_min % 10 + '0';
     date[12] = '\0';
-    printf("%s\n",date);
+    //printf("%s\n",date);
 }
 
 
 void toDateOffset2(char *date){
-
+    //Solltat mit dem auskommentierten Code auch gehen, habe bei ein paar Sachen die Umwandlung in char falsch gedacht ( + '0')
     time_t now = time(NULL);
     struct tm tm = *localtime(&now);    
     int tmp, tmp1, tmp2, tmp3 ,tmp4;
@@ -80,13 +80,14 @@ void toDateOffset2(char *date){
     date[1] = tmp2 + '0';
     date[2] = tmp3 + '0';
     date[3] = tmp4 + '0';
-    
+    /*
     date[5] = ':';
     
     date[6] = (tm.tm_mon + 1) / 10 + '0';
     date[7] = (tm.tm_mon + 1) % 10 + '0';
 
     date[8] = ':';
+    */
 
                    /* tempTimeInt = atoi(timeBufferStart);
                       printf("toDate: %s\n", timeBufferStart);
@@ -98,17 +99,37 @@ void toDateOffset2(char *date){
                         tempTimeInt = tempTimeInt + 200; 
                       }*/
 
+    date[4] = (tm.tm_mon + 1) / 10 + '0';
+    date[5] = (tm.tm_mon + 1) % 10 + '0';
+    date[6] = tm.tm_mday / 10 + '0';
+    //date[7] = tm.tm_mday % 10 + '0'; 
+    //date[8] = tm.tm_hour / 10 + '0';
+    //date[9] = tm.tm_hour % 10 + '0';
+    date[10] = tm.tm_min / 10 + '0';
+    date[11] = tm.tm_min % 10 + '0';
+    date[12] = '\0';
 
-    tmpOffset1 = tm.tm_mday % 10 + '0';
-    tmpOffset2 = tm.tm_hour / 10 + '0';
-    tmpOffset3 = tm.tm_hour % 10 + '0';
+    tmpOffset1 = tm.tm_mday % 10;
+    tmpOffset2 = tm.tm_hour / 10;
+    tmpOffset3 = tm.tm_hour % 10;
 
     if(tmpOffset3 > 1 && tmpOffset2 == 2){
         tmpOffset1++;
         tmpOffset2 = 0;
         tmpOffset3 = (tmpOffset3 + 2) % 10;
     }
+    else{
+        tmpOffset3 = tmpOffset3 + 2;
+        if(tmpOffset3 > 9){
+            tmpOffset3 = tmpOffset3 % 10;
+            tmpOffset2++;
+        }
 
+    }
+    date[7] = tmpOffset1 + '0';
+    date[8] = tmpOffset2 + '0';
+    date[9] = tmpOffset3 + '0';
+/*
 
 
     date[9] = tm.tm_mday / 10 + '0';
@@ -124,6 +145,7 @@ void toDateOffset2(char *date){
     date[15] = tm.tm_min / 10;
     date[16] = tm.tm_min % 10;
     date[17] = '\0';
+*/
 }
 
 int parsePerson(char *text, struct person *toPerson) {
