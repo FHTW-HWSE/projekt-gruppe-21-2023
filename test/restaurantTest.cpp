@@ -1,54 +1,24 @@
+#define CATCH_CONFIG_MAIN 
 #include <catch2/catch.hpp>
 #include "../include/restaurant.h"
+#include "../include/structhandeling.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #define maxTables 10
 
-struct Restaurant restaurant;
-SCENARIO("CreatingRestaurantWithPositiveParameter")
+SCENARIO("addTable")
 {
-    GIVEN("A User sets the size of the restaurant")
-    {
-      restaurant.length=2;
-      restaurant.width=3;      
-    }    
-    WHEN("The parameters are correct")
-    {
-      if()
-    }
-    THEN("The size of the restaurant is created")
-    {
-      REQUIRE()
-    }
-}
-SCENARIO("CreatingRestaurantWithNegativeCoordinates")
-{
-   GIVEN("A User sets the size of the restaurant")
-    {
-      
-      restaurant.length=2;
-      restaurant.width=-3;
-    }
-    WHEN("The parameters are negative.")
-    {
-      
-
-    }
-    THEN("A Errorwarning will be sent.")
-    {
-      
-    }
-}
-SCENARIO("CreateATableInTheRestaurant")
-{
-  GIVEN("User wants create a Table")
+  GIVEN("AddTable")
   {
-    struct Table table;
+
     struct Restaurant restaurant;
     restaurant.length=2;
     restaurant.width=4;
-    WHEN("Table is in the restaurant")
+    WHEN("length and width =>0 ")
     {
-    int checker=addTable(*restaurant,2,2);
-    THEN("A table is created in the restaurant")
+    int checker=addTable(&restaurant,2,2);
+    THEN("checker==1")
      {
       REQUIRE(checker == 1);
      }
@@ -57,20 +27,19 @@ SCENARIO("CreateATableInTheRestaurant")
   
   
 }
-SCENARIO("CreateTableOutsideOfTheRestaurantWithNegativeParamter")
+SCENARIO("addTableWithNegatives")
 {
- GIVEN("User wants create a Table")
+ GIVEN("addTable")
   {
-    struct Table table;
     struct Restaurant restaurant;
     restaurant.length=2;
     restaurant.width=4;
-   WHEN("Table is outside of the restaurant")
+   WHEN("table X || Y < 0 ")
    {
-    int checker=addTable(*restaurant,3,-5); 
-     THEN("User gets an Error-Message")
+    int checker=addTable(&restaurant,3,-5); 
+     THEN("checker==1")
      {
-       REQUIRE(checker==0);
+       REQUIRE(checker==1);
      }
    }
   }
@@ -78,42 +47,38 @@ SCENARIO("CreateTableOutsideOfTheRestaurantWithNegativeParamter")
   
 }
 
-SCENARIO("CreateTableOnAnExistingTable")
+SCENARIO("TableOnTheSamePostion")
 {
-  GIVEN("User wants create a Table")
+  GIVEN("AddsATable")
   {
-    struct Table table;
     struct Restaurant restaurant;
     restaurant.length=2;
     restaurant.width=4;
        
-   WHEN("There is already a table")
+   WHEN("CoordinatesOfTableAreSame")
    {
-    int checker=addTable(*restaurant,2,3);
-     THEN("User gets an Error-Message")
+    int checker=addTable(&restaurant,2,3);
+     THEN("checker==1")
      {
       REQUIRE(checker==1);
      } 
    }
   }
 }
-SCENARIO("CreateTableOutsideOfTheRestaurantWithPostiveParamter")
+SCENARIO("TableOutsideRestaurant")
 {
- GIVEN("User wants create a Table")
+ GIVEN("addTable")
   {
-    struct Table table;
     struct Restaurant restaurant;
     restaurant.length=2;
     restaurant.width=4;
-    WHEN("Table is outside of the restaurant")
+    WHEN("table.x>restaurant.length || table.y >restaurant.width")
     {
-     int checker=addTable(*restaurant,10,34);
+     int checker=addTable(&restaurant,10,34);
      THEN("User gets an Error-Message")
       {
         REQUIRE(checker==0);
       } 
     }
-  }
-  
-  
+  } 
 }
