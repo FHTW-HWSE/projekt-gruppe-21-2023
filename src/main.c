@@ -109,6 +109,7 @@ int main() {
     struct Restaurant *restaurant = malloc (sizeof(restaurant));
     float newLength, newWidth;
     int choice, tableNumber, personID;
+    int personIDInput;
     int tableX, tableY;
     char personName[nameLength];
     char personNumber[telNumLen];
@@ -330,11 +331,11 @@ int main() {
 
             case 10:
                 printf("Please enter the person Id you want to trace: \n");
-                scanf("%d", &personID);
+                scanf("%d", &personIDInput);
                 printf("Please enter the distance to search: \n");
                 int distance = 0;
                 scanf("%d", &distance);
-                traceContact(distance, headBooking, headTable, personID);
+                traceContact(distance, headBooking, headTable, personIDInput);
 
                 //ToDo
                 break;
@@ -348,7 +349,7 @@ int main() {
             case 12:
                 printf("Please enter the person and table Ids \n");
                 printf("ID person:\n");
-                scanf("%d", &personID);
+                scanf("%d", &personIDInput);
                 printf("ID table:\n");
                 scanf("%d", &tableNumber);
                 printf("Time:\n");
@@ -368,10 +369,10 @@ int main() {
                       printf("Startime: %s\n", timeBufferStart);
                       printf("Endtime: %s\n", timeBufferEnd);
                       if(flagBooking == 0){
-                        fillBookingHead(headBooking, personID, tableNumber, timeBufferStart, timeBufferEnd);
+                        fillBookingHead(headBooking, personIDInput, tableNumber, timeBufferStart, timeBufferEnd);
                         flagBooking = 1;
                       } else {
-                        addBookingData(headBooking, personID, tableNumber, timeBufferStart, timeBufferEnd);
+                        addBookingData(headBooking, personIDInput, tableNumber, timeBufferStart, timeBufferEnd);
                       }
                       break;
 
@@ -381,10 +382,10 @@ int main() {
                       scanf("%s", timeBufferStart);
                       scanf("%s", timeBufferEnd);
                       if(flagBooking == 0){
-                        fillBookingHead(headBooking, personID, tableNumber, timeBufferStart, timeBufferEnd);
+                        fillBookingHead(headBooking, personIDInput, tableNumber, timeBufferStart, timeBufferEnd);
                         flagBooking = 1;
                       } else {
-                        addBookingData(headBooking, personID, tableNumber, timeBufferStart, timeBufferEnd);
+                        addBookingData(headBooking, personIDInput, tableNumber, timeBufferStart, timeBufferEnd);
                       }
 
                       break;

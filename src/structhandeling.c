@@ -34,7 +34,7 @@ struct booking *createBookingHead(){
 }
 
 void addPersonList(struct person *old){
-    person *new = malloc(sizeof(person)); 
+    struct person *new = malloc(sizeof(person)); 
 
     if(new == NULL){
         return;
@@ -82,18 +82,19 @@ void addBookingList(struct booking *old){
 }
 
 void addBookingData(struct booking *bookingHead, int idPerson, int idTable, char *starttime, char *endtime){
-    booking *new = malloc(sizeof(booking));
+    struct booking *new = malloc(sizeof(booking));
+    struct booking *current = bookingHead;
 
     if(new == NULL){
         printf("Error creating booking struct");
         return;
     }
-    new = bookingHead;
 
-    while(new->next != NULL){
-        new = new->next;
+    while(current->next != NULL){
+        current = current->next;
     }
-    bookingHead->next = new;
+
+    current->next = new;
     new->next = NULL;
 
     new->idPerson = idPerson;
